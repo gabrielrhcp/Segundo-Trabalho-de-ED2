@@ -9,13 +9,13 @@ struct node_tree
 	int height;
 };
 
-// root = insert(root, 9); -- assim q insere
-// root = deleteNode(root, 10); -- assim q deleta
-// preOrder(root); -- assim q printa
+// node = insert(node, key); -- assim q insere
+// node = deleteNode(node, key); -- assim q deleta
+// preOrder(node); -- assim q printa
 Node* createAvlTree(int dados){
     Node *root = NULL;
     FILE *arq;
-    if(dados == 1){  // se igual 1 lera o arquivo com os dados A
+    if(dados == 1){  // se igual 1 lera o arquivo com os dados A, caso contrario dados B
         arq = fopen("dados/dadosA.txt","r");
     }else{
         arq = fopen("dados/dadosB.txt","r");
@@ -280,25 +280,65 @@ void preOrder(Node *root)
 	}
 }
 
+int compara(int a, Node *b)
+{
+    if(b != NULL)
+	{
+	    if(a == b->key)
+        {
+            return TRUE;
+	    }
+	    if(compara(a, b->left) != TRUE && compara(a, b->right) != TRUE)
+        {
+            return FALSE;
+        }
+        else
+        {
+            return TRUE;
+        }
+	}
+}
+
 void iguais(Node *a, Node *b)
 {
-	if(a != NULL){
-        compara(a->key,b);
+	if(a != NULL)
+    {
+        if(compara(a->key,b) == TRUE)
+        {
+            printf("%d ",a->key);
+        }
         iguais(a->right,b);
         iguais(a->left,b);
 	}
 }
 
-void compara(int a, Node *b){
-    if(b != NULL)
-	{
-	    if(a == b->key){
-            printf("%d ", b->key);
-	    }
-		compara(a, b->left);
-		compara(a, b->right);
-	}
+Node *inserirBA(Node *a, Node *b)
+{
+    if(a != NULL)
+    {
+        if(compara(a->key,b) != TRUE)
+        {
+            printf("%d ",a->key);
+            b = insert(b, a->key);
+        }
+        b = inserirBA(a->right,b);
+        b = inserirBA(a->left,b);
+    }
+    return b;
 }
 
-
+Node *removeBA(Node *a, Node *b)
+{
+    if(a != NULL)
+    {
+        if(compara(a->key,b) == TRUE)
+        {
+            printf("%d ",a->key);
+            b = deleteNode(b, a->key);
+        }
+        b = removeBA(a->right,b);
+        b = removeBA(a->left,b);
+    }
+    return b;
+}
 

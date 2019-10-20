@@ -25,32 +25,43 @@ int main(){
         case 2:
 
             break;
+
         case 3:
             dadosA = createAvlTree(1);
             dadosB = createAvlTree(2);
+            printf("\nDados A: \n");
+            preOrder(dadosA);
+            printf("\n\nDados B:\n");
+            preOrder(dadosB);
+            switch(oqf){
+                case 1:
+                    printf("\n\nIguais:\n");
+                    iguais(dadosA, dadosB);
+                    printf("\n");
+                    // 1 10 12 15 35 4 6 100 25 48 29 7
+                    break;
+                case 2:
+                    // 2 3 24 8 36
+                    printf("\n");
+                    dadosB = inserirBA(dadosA, dadosB);
+                    printf("\n\nDados B com os elementos de A inseridos:\n");
+                    preOrder(dadosB);
+                    printf("\n");
+                    break;
+                default:
+                    // 5 9 95 23 64 41
+                    printf("\n");
+                    dadosB = removeBA(dadosA, dadosB);
+                    printf("\n\nRemovidos os elementos de A q tbm estao em B:\n");
+                    preOrder(dadosB);
+                    printf("\n");
+                    break;
+            }
             break;
+
         default:
 
             break;
     }
 
-    printf("\nDados A: \n");
-    preOrder(dadosA);
-    printf("\n\nDados B:\n");
-    preOrder(dadosB);
-
-    switch(oqf){
-        case 1:
-            printf("\n\nIguais: ");
-            iguais(dadosA, dadosB);
-            printf("\n");
-            // 1 10 12 15 35 4 6 100 25 48 29 7
-            break;
-        case 2:
-
-            break;
-        default:
-
-            break;
-    }
 }
