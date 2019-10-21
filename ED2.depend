@@ -10,3 +10,22 @@
 1571577534 source:c:\users\cliente\desktop\ed2\main.c
 	"avltree.h"
 
+1571673381 source:c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\avltree.c
+	"avltree.h"
+
+1571581186 c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\avltree.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1571678029 source:c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\main.c
+	"avltree.h"
+	"rbtree.h"
+
+1571678430 source:c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\rbtree.c
+	<stdio.h>
+	<stdlib.h>
+	"rbtree.h"
+
+1571677437 c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\rbtree.h
+

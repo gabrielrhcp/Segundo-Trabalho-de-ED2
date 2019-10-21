@@ -38,6 +38,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="rbtree.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rbtree.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

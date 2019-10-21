@@ -1,8 +1,15 @@
 #include "avltree.h"
+#include "rbtree.h"
 
 int main(){
-    Node *dadosA;
-    Node *dadosB;
+    // ARVORE AVL
+    Node *avlA;
+    Node *avlB;
+
+    // ARVORE RUBRO NEGRA
+    tipoArvore *rbA;
+    tipoArvore *rbB;
+
     int ma; // metodo de armazenamento
     int oqf; // escolha feita pelo usuario, oq fazer
 
@@ -27,41 +34,99 @@ int main(){
             break;
 
         case 3:
-            dadosA = createAvlTree(1);
-            dadosB = createAvlTree(2);
+            avlA = createAvlTree(1);
+            avlB = createAvlTree(2);
             printf("\nDados A: \n");
-            preOrder(dadosA);
+            preOrder(avlA);
             printf("\n\nDados B:\n");
-            preOrder(dadosB);
+            preOrder(avlB);
             switch(oqf){
                 case 1:
                     printf("\n\nIguais:\n");
-                    iguais(dadosA, dadosB);
+                    iguais(avlA, avlB);
                     printf("\n");
                     // 1 10 12 15 35 4 6 100 25 48 29 7
                     break;
                 case 2:
                     // 2 3 24 8 36
                     printf("\n");
-                    dadosB = inserirBA(dadosA, dadosB);
-                    printf("\n\nDados B com os elementos de A inseridos:\n");
-                    preOrder(dadosB);
+                    avlB = inserirBA(avlA, avlB);
+                    printf("\nDados B com os elementos de A inseridos:\n");
+                    preOrder(avlB);
                     printf("\n");
                     break;
                 default:
-                    // 5 9 95 23 64 41
+                    //
                     printf("\n");
-                    dadosB = removeBA(dadosA, dadosB);
-                    printf("\n\nRemovidos os elementos de A q tbm estao em B:\n");
-                    preOrder(dadosB);
+                    avlA = removeBA(avlB, avlA);
+                    printf("\nRemovidos os elementos de A q tbm estao em B:\n");
+                    preOrder(avlA);
                     printf("\n");
                     break;
             }
             break;
 
         default:
+            criarArvoreRB(&rbA,1);
+            criarArvoreRB(&rbB,0);
+            printf("\nDados A: \n");
+            preOrderRB(rbA);
+            printf("\n\nDados B: \n");
+            preOrderRB(rbB);
 
+            switch(oqf){
+                case 1:
+                    printf("\n\nIguais:\n");
+                    igualRB(rbA,rbB);
+                    printf("\n");
+                    // 1 10 12 15 35 4 6 100 25 48 29 7
+                    break;
+                case 2:
+                    printf("\n");
+                    rbB = inserirBARB(rbA, rbB);
+                    printf("\nDados B com os elementos de A inseridos:\n");
+                    preOrderRB(rbB);
+                    printf("\n");
+                    // 2 3 24 8 36
+                    break;
+                default:
+                    printf("\n");
+                    rbA = removerBARB(rbB, rbA);
+                    printf("\nRemovidos os elementos de A q tbm estao em B:\n");
+                    preOrderRB(rbA);
+                    printf("\n");
+                    //
+                    break;
+            }
             break;
     }
-
 }
+
+/*
+            switch(oqf){
+                case 1:
+                    printf("\n\nIguais:\n");
+
+                    printf("\n");
+                    // 1 10 12 15 35 4 6 100 25 48 29 7
+                    break;
+                case 2:
+                    printf("\n");
+
+                    printf("\nDados B com os elementos de A inseridos:\n");
+
+                    printf("\n");
+                    break;
+                    // 2 3 24 8 36
+                    break;
+                default:
+                    printf("\n");
+
+                    printf("\nRemovidos os elementos de A q tbm estao em B:\n");
+
+                    printf("\n");
+                    //
+                    break;
+            }
+
+*/

@@ -318,7 +318,6 @@ Node *inserirBA(Node *a, Node *b)
     {
         if(compara(a->key,b) != TRUE)
         {
-            printf("%d ",a->key);
             b = insert(b, a->key);
         }
         b = inserirBA(a->right,b);
@@ -333,7 +332,6 @@ Node *removeBA(Node *a, Node *b)
     {
         if(compara(a->key,b) == TRUE)
         {
-            printf("%d ",a->key);
             b = deleteNode(b, a->key);
         }
         b = removeBA(a->right,b);
