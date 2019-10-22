@@ -29,3 +29,35 @@
 
 1571677437 c:\users\gabie\onedrive\Área de trabalho\segundo-trabalho-de-ed2-master\rbtree.h
 
+1571758305 source:c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\avltree.c
+	"avltree.h"
+
+1571581186 c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\avltree.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1571758288 source:c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\rbtree.c
+	<stdio.h>
+	<stdlib.h>
+	"rbtree.h"
+
+1571677437 c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\rbtree.h
+
+1571758337 source:c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\main.c
+	"avltree.h"
+	"rbtree.h"
+	"lista.h"
+
+1571758986 source:c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\lista.c
+
+1571758990 c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\lista.h
+
+1571760062 source:c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\btree.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"btree.h"
+
+1571760190 c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\btree.h
+

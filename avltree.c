@@ -1,4 +1,5 @@
 #include "avltree.h"
+#define _AVLTREE_C_
 
 // An AVL tree node
 struct node_tree
@@ -318,6 +319,7 @@ Node *inserirBA(Node *a, Node *b)
     {
         if(compara(a->key,b) != TRUE)
         {
+            printf("nao contem: %d\n",a->key);
             b = insert(b, a->key);
         }
         b = inserirBA(a->right,b);
@@ -332,6 +334,7 @@ Node *removeBA(Node *a, Node *b)
     {
         if(compara(a->key,b) == TRUE)
         {
+            printf("iguais: %d\n",a->key);
             b = deleteNode(b, a->key);
         }
         b = removeBA(a->right,b);

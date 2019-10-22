@@ -1,5 +1,6 @@
 #include "avltree.h"
 #include "rbtree.h"
+#include "lista.h"
 
 int main(){
     // ARVORE AVL
