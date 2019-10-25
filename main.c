@@ -1,8 +1,14 @@
 #include "avltree.h"
 #include "rbtree.h"
-#include "lista.h"
+#include "btree.h"
+#include <time.h>
 
 int main(){
+
+    // ARVORE BINARIA
+    t_arvore btA;
+    t_arvore btB;
+
     // ARVORE AVL
     Node *avlA;
     Node *avlB;
@@ -13,6 +19,7 @@ int main(){
 
     int ma; // metodo de armazenamento
     int oqf; // escolha feita pelo usuario, oq fazer
+    time_t t_ini = 0 , t_fim = 0;
 
 
     printf("Escolha como armazenar:\n");
@@ -31,7 +38,12 @@ int main(){
 
             break;
         case 2:
-
+            btA = criaNoBT(1);
+            btB = criaNoBT(2);
+            printf("\nDados A: \n");
+            exibirPreOrdem(btA);
+            printf("\n\nDados B: \n");
+            exibirPreOrdem(btB);
             break;
 
         case 3:
@@ -44,14 +56,18 @@ int main(){
             switch(oqf){
                 case 1:
                     printf("\n\nIguais:\n");
+                    t_ini = time(NULL);
                     iguais(avlA, avlB);
+                    t_fim = time(NULL);
                     printf("\n");
                     // 1 10 12 15 35 4 6 100 25 48 29 7
                     break;
                 case 2:
                     // 2 3 24 8 36
                     printf("\n");
+                    t_ini = time(NULL);
                     avlB = inserirBA(avlA, avlB);
+                    t_fim = time(NULL);
                     printf("\nDados B com os elementos de A inseridos:\n");
                     preOrder(avlB);
                     printf("\n");
@@ -59,7 +75,9 @@ int main(){
                 default:
                     //
                     printf("\n");
+                    t_ini = time(NULL);
                     avlA = removeBA(avlB, avlA);
+                    t_fim = time(NULL);
                     printf("\nRemovidos os elementos de A q tbm estao em B:\n");
                     preOrder(avlA);
                     printf("\n");
@@ -78,13 +96,17 @@ int main(){
             switch(oqf){
                 case 1:
                     printf("\n\nIguais:\n");
+                    t_ini = time(NULL);
                     igualRB(rbA,rbB);
+                    t_fim = time(NULL);
                     printf("\n");
                     // 1 10 12 15 35 4 6 100 25 48 29 7
                     break;
                 case 2:
                     printf("\n");
+                    t_ini = time(NULL);
                     rbB = inserirBARB(rbA, rbB);
+                    t_fim = time(NULL);
                     printf("\nDados B com os elementos de A inseridos:\n");
                     preOrderRB(rbB);
                     printf("\n");
@@ -92,7 +114,9 @@ int main(){
                     break;
                 default:
                     printf("\n");
+                    t_ini = time(NULL);
                     rbA = removerBARB(rbB, rbA);
+                    t_fim = time(NULL);
                     printf("\nRemovidos os elementos de A q tbm estao em B:\n");
                     preOrderRB(rbA);
                     printf("\n");
@@ -101,19 +125,32 @@ int main(){
             }
             break;
     }
+
+    printf("\n\nTempo: %f\n",difftime(t_fim, t_ini));
 }
 
 /*
+
+
+            printf("\nDados A: \n");
+
+            printf("\n\nDados B: \n");
+
+
             switch(oqf){
                 case 1:
                     printf("\n\nIguais:\n");
+                    t_ini = time(NULL);
 
+                    t_fim = time(NULL);
                     printf("\n");
                     // 1 10 12 15 35 4 6 100 25 48 29 7
                     break;
                 case 2:
                     printf("\n");
+                    t_ini = time(NULL);
 
+                    t_fim = time(NULL);
                     printf("\nDados B com os elementos de A inseridos:\n");
 
                     printf("\n");
@@ -122,7 +159,9 @@ int main(){
                     break;
                 default:
                     printf("\n");
+                    t_ini = time(NULL);
 
+                    t_fim = time(NULL);
                     printf("\nRemovidos os elementos de A q tbm estao em B:\n");
 
                     printf("\n");

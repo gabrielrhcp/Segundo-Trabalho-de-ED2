@@ -4,17 +4,14 @@
 #include "btree.h"
 #define _BTREE_C_
 
-struct t_ele{
-	int num;
-};
 
 struct s_no{
 	t_no *esq;
-	t_elemento dado;
 	t_no *dir;
+	int dado;
 };
 
-t_no *criaNo (void)
+t_no *criaNoBT(int i)
 {
 	t_no *novo = NULL;
 
@@ -22,8 +19,23 @@ t_no *criaNo (void)
 	if(novo != NULL)
 	{
 		novo->esq = novo->dir = NULL;
-		novo->dado.num = 0;
 	}
+
+    FILE *arquivo;
+    int valor;
+    if(i == 1){
+        arquivo = fopen("dados/dadosA.txt", "r");
+    }else if(i == 2){
+        arquivo = fopen("dados/dadosB.txt", "r");
+    }
+
+    if(i == 1 || i == 2){
+        while((fscanf(arquivo,"%d",&valor) != EOF)){
+            inserir(novo, valor);
+
+        }
+        fclose(arquivo);
+    }
 
 	return novo;
 }
@@ -38,19 +50,19 @@ bool isVazia (t_no *no)
 	return result;
 }
 
-int comparaB(t_elemento item1, t_elemento item2)
+int comparaB(int item1, int item2)
 {
 	int result = 0;
 
-	if(item1.num > item2.num)
+	if(item1 > item2)
 		result = 1;
-	else if(item1.num < item2.num)
+	else if(item1 < item2)
 		result = -1;
 
 	return result;
 }
 
-t_no *busca (t_arvore raiz, t_elemento dado)
+t_no *busca (t_arvore raiz, int dado)
 {
 	t_no *no = NULL;
 
@@ -70,7 +82,7 @@ t_no *busca (t_arvore raiz, t_elemento dado)
 	return no;
 }
 
-t_no *buscaSetPai (t_arvore raiz, t_elemento dado, t_no **pai)
+t_no *buscaSetPai (t_arvore raiz, int dado, t_no **pai)
 {
 	t_no *no = NULL;
 
@@ -94,13 +106,13 @@ t_no *buscaSetPai (t_arvore raiz, t_elemento dado, t_no **pai)
 	return no;
 }
 
-bool inserir (t_arvore *raiz, t_elemento item)
+bool inserir (t_arvore *raiz, int item)
 {
 	bool result = false;
 
 	if(*raiz == NULL)
 	{
-		*raiz = criaNo();
+		*raiz = criaNoBT(0);
 
 		if(*raiz != NULL)
 		{
@@ -119,7 +131,7 @@ bool inserir (t_arvore *raiz, t_elemento item)
 	return result;
 }
 
-bool remover (t_arvore *raiz, t_elemento item)
+bool remover (t_arvore *raiz, int item)
 {
 	bool result = false;
 	t_no *no, *pai, *sub, *paiSuc, *suc;
@@ -187,11 +199,11 @@ void esvaziar (t_arvore *raiz)
 	}
 }
 
-void exibirPreOrdem (t_arvore raiz)
+void exibirPreOrdem(t_arvore raiz)
 {
 	if(raiz != NULL)
 	{
-		printf("%d ", raiz->dado.num);
+		printf("%d ", raiz->dado);
 		exibirPreOrdem(raiz->esq);
 		exibirPreOrdem(raiz->dir);
 	}
