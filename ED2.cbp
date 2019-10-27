@@ -40,10 +40,6 @@
 		</Unit>
 		<Unit filename="btree.h" />
 		<Unit filename="geral.h" />
-		<Unit filename="hash.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="hash.h" />
 		<Unit filename="lista.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -29,74 +29,48 @@
 
 1571677437 c:\users\gabie\onedrive\Área de trabalho\segundo-trabalho-de-ed2-master\rbtree.h
 
-1571758305 source:c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\avltree.c
-	"avltree.h"
-
-1571581186 c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\avltree.h
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-
-1571758288 source:c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\rbtree.c
-	<stdio.h>
-	<stdlib.h>
-	"rbtree.h"
-
-1571677437 c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\rbtree.h
-
-1571758337 source:c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\main.c
-	"avltree.h"
-	"rbtree.h"
-	"lista.h"
-
-1571758986 source:c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\lista.c
-
-1571758990 c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\lista.h
-
-1571760062 source:c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\btree.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"btree.h"
-
-1571760190 c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\btree.h
-
-1572100540 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\avltree.c
+1572183209 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\avltree.c
 	"geral.h"
 	"avltree.h"
 
-1572036774 c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\avltree.h
+1572182076 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\avltree.h
 
-1572104082 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\btree.c
-	"geral.h"
-	"btree.h"
-
-1572027204 c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\btree.h
-
-1572100784 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\lista.c
-	"geral.h"
-	"lista.h"
-
-1572100511 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\rbtree.c
-	"geral.h"
-	"rbtree.h"
-
-1572036702 c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\rbtree.h
-
-1572100511 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\main.c
+1572190249 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\main.c
 	"geral.h"
 	"avltree.h"
 	"rbtree.h"
 	"btree.h"
 	"lista.h"
+	"hash.h"
 
-1572100784 c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\lista.h
+1572182076 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\rbtree.h
 
-1572036774 c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\geral.h
+1572183303 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\rbtree.c
+	"geral.h"
+	"rbtree.h"
+
+1572191981 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\geral.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<conio.h>
 	<time.h>
 
-1572101533 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\hash.c
+1572183352 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\btree.c
+	"geral.h"
+	"btree.h"
+
+1572182076 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\btree.h
+
+1572183381 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\lista.c
+	"geral.h"
+	"lista.h"
+
+1572182076 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\lista.h
+
+1572192229 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\hash.c
+	"hash.h"
+	"geral.h"
+
+1572190384 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\hash.h
 

@@ -290,6 +290,7 @@ int compara(int a, Node *b)
         {
             return TRUE;
 	    }
+	    num_comp++;
 	    if(compara(a, b->left) != TRUE && compara(a, b->right) != TRUE)
         {
             return FALSE;
@@ -298,6 +299,7 @@ int compara(int a, Node *b)
         {
             return TRUE;
         }
+        num_comp++;
 	}
 }
 
@@ -309,6 +311,7 @@ void iguais(Node *a, Node *b)
         {
             printf("%d ",a->key);
         }
+        num_comp++;
         iguais(a->right,b);
         iguais(a->left,b);
 	}
@@ -322,6 +325,7 @@ Node *inserirBA(Node *a, Node *b)
         {
             b = insert(b, a->key);
         }
+        num_comp++;
         b = inserirBA(a->right,b);
         b = inserirBA(a->left,b);
     }
@@ -336,6 +340,7 @@ Node *removeBA(Node *a, Node *b)
         {
             b = deleteNode(b, a->key);
         }
+        num_comp++;
         b = removeBA(a->right,b);
         b = removeBA(a->left,b);
     }

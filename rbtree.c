@@ -300,12 +300,15 @@ tipoNo* buscarElemento(int numero, tipoNo *raiz){
     if(raiz == NULL){
         return NULL;
     }
+    num_comp++;
     if (numero < raiz->dado){
         return buscarElemento(numero, raiz->noEsquerdo);
     }
+    num_comp++;
     if(numero > raiz->dado){
         return buscarElemento(numero,raiz->noDireito);
     }
+    num_comp++;
     return raiz;
 }
 
@@ -541,6 +544,7 @@ void igualRB(tipoNo *a, tipoNo *b){
         if(buscarElemento(a->dado,b) != NULL){
             printf("%d ",a->dado);
         }
+        num_comp++;
         igualRB(a->noEsquerdo,b);
         igualRB(a->noDireito,b);
     }
@@ -551,6 +555,7 @@ tipoNo* inserirBARB(tipoNo *a, tipoNo *b){
         if(buscarElemento(a->dado,b) == NULL){
             inserirArvore(a->dado,&b);
         }
+        num_comp++;
         inserirBARB(a->noEsquerdo,b);
         inserirBARB(a->noDireito,b);
     }
@@ -562,6 +567,7 @@ tipoNo* removerBARB(tipoNo *a, tipoNo *b){
         if(buscarElemento(a->dado,b) != NULL){
             b = removerElemento(a->dado,b);
         }
+        num_comp++;
         b = removerBARB(a->noEsquerdo,b);
         b = removerBARB(a->noDireito,b);
     }

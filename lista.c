@@ -100,8 +100,11 @@ void* dllQuery(DLList *list, void* key, int(*cmp)(void*,void*)){
 				data = spec->data;
 				return data;
 			}
+			num_comp++;
 		}
+		num_comp++;
 	}
+	num_comp++;
 	return NULL;
 }
 
@@ -150,6 +153,7 @@ void DLLprintIguais(DLList *a, DLList *b, int (*cmp)(void*,void*)){
             if(dllQuery(b,aux->data,cmp) != NULL){
                 printf("%d ",(int)aux->data);
             }
+            num_comp++;
             aux = aux->next;
         }
     }
@@ -163,6 +167,7 @@ void DLLinserirListaBA(DLList *a, DLList *b, int(*cmp)(void*,void*)){
             if(dllQuery(b,aux->data,cmp) == NULL){
                dllInsertFirst(b,aux->data);
             }
+            num_comp++;
             aux = aux->next;
         }
     }
@@ -176,7 +181,9 @@ void DLLremoverListaAB(DLList *a, DLList *b, int(*cmp)(void*,void*)){
             if(dllQuery(b,aux->data,cmp) != NULL){
                dllRemoveSpec(b,aux->data,cmp);
             }
+            num_comp++;
             aux = aux->next;
         }
     }
 }
+

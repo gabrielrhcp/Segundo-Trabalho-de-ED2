@@ -3,13 +3,19 @@
 #include "rbtree.h"
 #include "btree.h"
 #include "lista.h"
-
+#include "hash.h"
 
 int main(){
+    // VARIAVEIS AUXILIARES
+    num_comp = 0;
 
     // LISTA
     DLList *listA;
     DLList *listB;
+
+    // HASH
+    HashOpen *hashA;
+    HashOpen *hashB;
 
     // ARVORE BINARIA
     t_arvore btA;
@@ -82,7 +88,47 @@ int main(){
                     break;
             }
             break;
+        // HASH
+        case 2:
+            hashA = hlCreate(20,1);
+            hashB = hlCreate(20,2);
+            printf("\nDados A: \n");
+            hlPrint(hashA);
+            printf("\n\nDados B: \n");
+            hlPrint(hashB);
 
+            switch(oqf){
+                case 1:
+                    printf("\n\nIguais:\n");
+                    t_ini = time(NULL);
+                    hlIguais(hashA, hashB);
+                    t_fim = time(NULL);
+                    printf("\n");
+                    // 1 10 12 15 35 4 6 100 25 48 29 7
+                    break;
+                case 2:
+                    printf("\n");
+                    t_ini = time(NULL);
+
+                    t_fim = time(NULL);
+                    printf("\nDados B com os elementos de A inseridos:\n");
+
+                    printf("\n");
+                    break;
+                    // 2 3 24 8 36
+                    break;
+                default:
+                    printf("\n");
+                    t_ini = time(NULL);
+
+                    t_fim = time(NULL);
+                    printf("\nRemovidos os elementos de A q tbm estao em B:\n");
+
+                    printf("\n");
+                    //
+                    break;
+            }
+            break;
         // ARVORE BINARIA
         case 3:
             btA = criaNoBT(1);
@@ -206,7 +252,7 @@ int main(){
             }
             break;
     }
-
+    printf("\nNumero de comparacoes: %d\n",num_comp);
     printf("\n\nTempo: %f\n",difftime(t_fim, t_ini));
 }
 
@@ -246,7 +292,7 @@ int main(){
                     printf("\nRemovidos os elementos de A q tbm estao em B:\n");
 
                     printf("\n");
-                    //
+                    // 8 2 3 24 36
                     break;
             }
 

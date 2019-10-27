@@ -74,10 +74,14 @@ t_no *busca (t_arvore raiz, t_elemento dado)
 		{
 			no = busca(raiz->esq, dado);
 
-			if(no == NULL)
-				no = busca(raiz->dir, dado);
+			if(no == NULL){
+                no = busca(raiz->dir, dado);
+			}
+            num_comp++;
 		}
+		num_comp++;
 	}
+	num_comp++;
 
 	return no;
 }
@@ -216,6 +220,7 @@ void iguaisBT(t_arvore a, t_arvore b)
 		if(busca(b, a->dado) != NULL){
             printf("%d ",a->dado.num);
 		}
+		num_comp++;
 		iguaisBT(a->esq, b);
 		iguaisBT(a->dir, b);
 	}
@@ -228,6 +233,7 @@ t_no *inserirBABT(t_arvore a, t_arvore b)
 		if(busca(b, a->dado) == NULL){
             inserir(b, a->dado);
 		}
+		num_comp++;
 		b = inserirBABT(a->esq, b);
 		b = inserirBABT(a->dir, b);
 	}
@@ -239,9 +245,10 @@ t_no *removerABBT(t_arvore a, t_arvore b)
 {
 	if(a != NULL)
 	{
-		if(busca(b, a->dado) == NULL){
+		if(busca(b, a->dado) != NULL){
             remover(b, a->dado);
 		}
+		num_comp++;
 		b = removerABBT(a->esq, b);
 		b = removerABBT(a->dir, b);
 	}
