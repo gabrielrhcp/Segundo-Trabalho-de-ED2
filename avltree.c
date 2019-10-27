@@ -14,14 +14,10 @@ struct node_tree
 // node = insert(node, key); -- assim q insere
 // node = deleteNode(node, key); -- assim q deleta
 // preOrder(node); -- assim q printa
-Node* createAvlTree(int dados){
+Node* createAvlTree(char a[]){
     Node *root = NULL;
     FILE *arq;
-    if(dados == 1){  // se igual 1 lera o arquivo com os dados A, caso contrario dados B
-        arq = fopen("dados/dadosA.txt","r");
-    }else{
-        arq = fopen("dados/dadosB.txt","r");
-    }
+    arq = fopen(a,"r");
     int aux;
 
     while(fscanf(arq,"%d",&aux) != EOF){
@@ -303,47 +299,49 @@ int compara(int a, Node *b)
 	}
 }
 
-void iguais(Node *a, Node *b)
+void iguaisAVL(DLList *a, Node *b)
 {
-	if(a != NULL)
-    {
-        if(compara(a->key,b) == TRUE)
-        {
-            printf("%d ",a->key);
+	DLNode *aux;
+    if(a != NULL && b != NULL){
+        aux = a->first;
+        while(aux != NULL){
+            if(compara((int)aux->data,b) != NULL){
+                printf("%d ",(int)aux->data);
+            }
+            num_comp++;
+            aux = aux->next;
         }
-        num_comp++;
-        iguais(a->right,b);
-        iguais(a->left,b);
-	}
-}
-
-Node *inserirBA(Node *a, Node *b)
-{
-    if(a != NULL)
-    {
-        if(compara(a->key,b) != TRUE)
-        {
-            b = insert(b, a->key);
-        }
-        num_comp++;
-        b = inserirBA(a->right,b);
-        b = inserirBA(a->left,b);
     }
-    return b;
 }
 
-Node *removeBA(Node *a, Node *b)
+void inserirBA(DLList *a, Node *b)
 {
-    if(a != NULL)
-    {
-        if(compara(a->key,b) == TRUE)
-        {
-            b = deleteNode(b, a->key);
+    DLNode *aux;
+    if(a != NULL && b != NULL){
+        aux = a->first;
+        while(aux != NULL){
+            if(compara((int)aux->data,b) == NULL){
+                b = insert(b,(int)aux->data);
+            }
+            num_comp++;
+            aux = aux->next;
         }
-        num_comp++;
-        b = removeBA(a->right,b);
-        b = removeBA(a->left,b);
     }
-    return b;
 }
 
+DLList *removeBA(DLList *a, Node *b)
+{
+    DLNode *aux;
+    DLList *blz = dllCreate(NULL);
+    if(a != NULL && b != NULL){
+        aux = a->first;
+        while(aux != NULL){
+            if(compara((int)aux->data,b) == NULL){
+                dllInsertFirst(blz, aux->data);
+            }
+            num_comp++;
+            aux = aux->next;
+        }
+    }
+    return blz;
+}

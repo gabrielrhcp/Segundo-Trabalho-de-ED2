@@ -12,7 +12,7 @@ struct s_no{
 	t_no *dir;
 };
 
-t_no *criaNoBT(int i)
+t_no *criaNoBT(char a[])
 {
 	t_no *novo = NULL;
 
@@ -24,18 +24,11 @@ t_no *criaNoBT(int i)
 
     FILE *arquivo;
     t_elemento valor;
-    if(i == 1){
-        arquivo = fopen("dados/dadosA.txt", "r");
-    }else if(i == 2){
-        arquivo = fopen("dados/dadosB.txt", "r");
+    arquivo = fopen(a, "r");
+    while((fscanf(arquivo,"%d",&valor.num) != EOF)){
+        inserir(novo, valor);
     }
-
-    if(i == 1 || i == 2){
-        while((fscanf(arquivo,"%d",&valor.num) != EOF)){
-            inserir(novo, valor);
-        }
-        fclose(arquivo);
-    }
+    fclose(arquivo);
 
 	return novo;
 }
@@ -213,45 +206,55 @@ void exibirPreOrdem (t_arvore raiz)
 	}
 }
 
-void iguaisBT(t_arvore a, t_arvore b)
+void iguaisBT(DLList *a, t_arvore b)
 {
-	if(a != NULL)
-	{
-		if(busca(b, a->dado) != NULL){
-            printf("%d ",a->dado.num);
-		}
-		num_comp++;
-		iguaisBT(a->esq, b);
-		iguaisBT(a->dir, b);
-	}
+	DLNode *aux;
+	t_elemento aux2;
+    if(a != NULL && b != NULL){
+        aux = a->first;
+        while(aux != NULL){
+            aux2.num = (int)aux->data;
+            if(busca(b,aux2) != NULL){
+                printf("%d ",aux2.num);
+            }
+            num_comp++;
+            aux = aux->next;
+        }
+    }
 }
 
-t_no *inserirBABT(t_arvore a, t_arvore b)
+void inserirBABT(DLList *a, t_arvore *b)
 {
-	if(a != NULL)
-	{
-		if(busca(b, a->dado) == NULL){
-            inserir(b, a->dado);
-		}
-		num_comp++;
-		b = inserirBABT(a->esq, b);
-		b = inserirBABT(a->dir, b);
-	}
-
-	return b;
+	DLNode *aux;
+	t_elemento aux2;
+    if(a != NULL && b != NULL){
+        aux = a->first;
+        while(aux != NULL){
+            aux2.num = (int)aux->data;
+            if(busca(b,aux2) == NULL){
+                inserir(*b, aux2);
+            }
+            num_comp++;
+            aux = aux->next;
+        }
+    }
 }
 
-t_no *removerABBT(t_arvore a, t_arvore b)
+DLList *removerABBT(DLList *a, t_arvore *b)
 {
-	if(a != NULL)
-	{
-		if(busca(b, a->dado) != NULL){
-            remover(b, a->dado);
-		}
-		num_comp++;
-		b = removerABBT(a->esq, b);
-		b = removerABBT(a->dir, b);
-	}
-
-	return b;
+	t_elemento aux2;
+    DLNode *aux;
+    DLList *blz = dllCreate(NULL);
+    if(a != NULL && b != NULL){
+        aux = a->first;
+        while(aux != NULL){
+            aux2.num = (int)aux->data;
+            if(busca(b,aux2) == NULL){
+                dllInsertFirst(blz, aux->data);
+            }
+            num_comp++;
+            aux = aux->next;
+        }
+    }
+    return blz;
 }

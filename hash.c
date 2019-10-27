@@ -76,7 +76,7 @@ int hlInsertLinear(HashOpen * hl, int key, void * data){
 		int tmp = key % hl->maxSize;
 		int i = tmp;
 		do{
-			if(hl->flags[i] == 0){
+			if(hl->flags[i] == NULL){
 				hl->keys[i] = key;
 				hl->vals[i] = data;
 				hl->flags[i] = 1;
@@ -98,6 +98,19 @@ void *hlGetLinear(HashOpen * hl, int key){
 		int i = key % hl->maxSize;
 		while(hl->flags[i] == 1){
 			if(hl->keys[i] == key){
+				return hl->vals[i];
+			}
+			i = (i+1) % hl->maxSize;
+		}
+	}
+	return NULL;
+}
+
+void *hlGetLinearValor(HashOpen * hl, int key, int valor){
+	if(hl != NULL){
+		int i = key % hl->maxSize;
+		while(hl->flags[i] == 1){
+			if(hl->vals[i] == valor){
 				return hl->vals[i];
 			}
 			i = (i+1) % hl->maxSize;
@@ -144,7 +157,7 @@ void hlPrint(HashOpen * hl){
 	if(hl != NULL){
 		for(int i = 0; i < hl->maxSize; i++){
 			if(hl->flags[i] == 1){
-				printf("%d ",(int)hl->vals[i]);
+				printf("%d|%d ",(int)hl->vals[i],hl->keys[i]);
 			}
 		}
 	}
@@ -154,10 +167,11 @@ void hlIguais(HashOpen *a, HashOpen *b){
     if(a!= NULL && b!= NULL){
         for(int i = 0; i < a->maxSize; i++){
             if(a->flags[i] == 1){
-                if(hlContainsLinear(b,a->keys[i]) == TRUE){
+                if(hlGetLinearValor(b, a->keys[i], (int)a->vals[i]) == a->vals[i]){
                     printf("%d ",(int)a->vals[i]);
                 }
             }
         }
     }
 }
+

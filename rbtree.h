@@ -1,3 +1,4 @@
+#include "lista.h"
 #define RUB 0
 #define NEG 1
 #define N_MAX 1027
@@ -6,7 +7,7 @@
 
 typedef struct tipoNo tipoNo;
 typedef struct tipoArvore tipoArvore;
-void criarArvoreRB(tipoArvore *arvore, int i);
+void criarArvoreRB(tipoArvore *arvore, char a[]);
 tipoNo* noAvo(tipoNo *n);
 tipoNo* noIrmao(tipoNo *n);
 tipoNo* noTio(tipoNo *n);
@@ -34,8 +35,8 @@ void removerDaArvore(int numero, tipoArvore *arvore);
 int maior(int numeroA, int numeroB);
 int calculaAltura(tipoNo *raiz);
 void preOrderRB(tipoNo *root);
-void igualRB(tipoNo *a, tipoNo *b);
-tipoNo* inserirBARB(tipoNo *a, tipoNo *b);
-tipoNo* removerBARB(tipoNo *a, tipoNo *b);
+void igualRB(DLList *a, tipoNo *b);
+void inserirBARB(DLList *a, tipoNo *b);
+DLList *removerBARB(DLList *a, tipoNo *b);
 
 #endif // _RBTREE_H_

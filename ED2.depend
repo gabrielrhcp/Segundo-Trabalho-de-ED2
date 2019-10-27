@@ -29,13 +29,14 @@
 
 1571677437 c:\users\gabie\onedrive\Área de trabalho\segundo-trabalho-de-ed2-master\rbtree.h
 
-1572183209 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\avltree.c
+1572210854 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\avltree.c
 	"geral.h"
 	"avltree.h"
 
-1572182076 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\avltree.h
+1572210823 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\avltree.h
+	"lista.h"
 
-1572190249 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\main.c
+1572210920 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\main.c
 	"geral.h"
 	"avltree.h"
 	"rbtree.h"
@@ -43,9 +44,10 @@
 	"lista.h"
 	"hash.h"
 
-1572182076 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\rbtree.h
+1572210703 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\rbtree.h
+	"lista.h"
 
-1572183303 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\rbtree.c
+1572210745 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\rbtree.c
 	"geral.h"
 	"rbtree.h"
 
@@ -56,21 +58,22 @@
 	<conio.h>
 	<time.h>
 
-1572183352 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\btree.c
+1572210974 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\btree.c
 	"geral.h"
 	"btree.h"
 
-1572182076 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\btree.h
+1572210906 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\btree.h
+	"lista.h"
 
-1572183381 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\lista.c
+1572210604 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\lista.c
 	"geral.h"
 	"lista.h"
 
-1572182076 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\lista.h
+1572209456 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\lista.h
 
-1572192229 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\hash.c
+1572203794 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\hash.c
 	"hash.h"
 	"geral.h"
 
-1572190384 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\hash.h
+1572205499 c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\hash.h
 

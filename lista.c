@@ -2,16 +2,6 @@
 #include "geral.h"
 #include "lista.h"
 
-struct _dllelm_{
-    DLNode *next, *prev;
-    void* data;
-};
-
-struct _dllist_{
-    DLNode* first;
-    DLNode* cur;
-};
-
 int dllCmp(void *a, void *b){
 	int ac = (int)a;
 	int bc = (int)b;
@@ -21,23 +11,24 @@ int dllCmp(void *a, void *b){
 	return FALSE;
 }
 
-DLList* dllCreate(int i){
+DLList* dllCreate(char a[]){
 	DLList* list = malloc(sizeof(DLList));
 	if(list != NULL){
 		list->first = NULL;
 		list->cur = NULL;
 	}
+
 	FILE *arquivo;
     int valor;
-    if(i == 1){
-        arquivo = fopen("dados/dadosA.txt", "r");
-    }else{
-        arquivo = fopen("dados/dadosB.txt", "r");
-    }
-    while(fscanf(arquivo,"%d",&valor) != EOF){
-        dllInsertFirst(list, (void*)valor);
-    }
-    fclose(arquivo);
+
+    if(a != NULL){
+        arquivo = fopen(a, "r");
+        while(fscanf(arquivo,"%d",&valor) != EOF){
+            dllInsertFirst(list, (void*)valor);
+        }
+        fclose(arquivo);
+	}
+
     return list;
 }
 

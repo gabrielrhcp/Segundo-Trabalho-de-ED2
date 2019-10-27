@@ -20,17 +20,14 @@ struct tipoArvore{
 // imprimirArvore(arvore.topo);
 // removerDaArvore(elemento, &arvore);
 
-void criarArvoreRB(tipoArvore *arvore, int i){
+void criarArvoreRB(tipoArvore *arvore,char a[]){
     arvore->topo = NULL;
     FILE *arquivo;
     int valor;
-    if(i == 1){
-        arquivo = fopen("dados/dadosA.txt", "r");
-    }else{
-        arquivo = fopen("dados/dadosB.txt", "r");
-    }
+    arquivo = fopen(a, "r");
+
     while((fscanf(arquivo,"%d",&valor) != EOF)){
-            inserirArvore(valor, arvore);
+        inserirArvore(valor, arvore);
     }
     fclose(arquivo);
 }
@@ -539,38 +536,50 @@ int calculaAltura(tipoNo *raiz){
 	}
 }
 
-void igualRB(tipoNo *a, tipoNo *b){
-    if(a != NULL){
-        if(buscarElemento(a->dado,b) != NULL){
-            printf("%d ",a->dado);
+void igualRB(DLList *a, tipoNo *b)
+{
+    DLNode *aux;
+    if(a != NULL && b != NULL){
+        aux = a->first;
+        while(aux != NULL){
+            if(buscarElemento((int)aux->data,b) != NULL){
+                printf("%d ",aux->data);
+            }
+            num_comp++;
+            aux = aux->next;
         }
-        num_comp++;
-        igualRB(a->noEsquerdo,b);
-        igualRB(a->noDireito,b);
     }
 }
 
-tipoNo* inserirBARB(tipoNo *a, tipoNo *b){
-    if(a != NULL){
-        if(buscarElemento(a->dado,b) == NULL){
-            inserirArvore(a->dado,&b);
+void inserirBARB(DLList *a, tipoNo *b)
+{
+    DLNode *aux;
+    if(a != NULL && b != NULL){
+        aux = a->first;
+        while(aux != NULL){
+            if(buscarElemento((int)aux->data,b) == NULL){
+                inserirArvore((int)aux->data, &b);
+            }
+            num_comp++;
+            aux = aux->next;
         }
-        num_comp++;
-        inserirBARB(a->noEsquerdo,b);
-        inserirBARB(a->noDireito,b);
     }
-    return b;
 }
 
-tipoNo* removerBARB(tipoNo *a, tipoNo *b){
-    if(a != NULL){
-        if(buscarElemento(a->dado,b) != NULL){
-            b = removerElemento(a->dado,b);
+DLList *removerBARB(DLList *a, tipoNo *b)
+{
+    DLNode *aux;
+    DLList *blz = dllCreate(NULL);
+    if(a != NULL && b != NULL){
+        aux = a->first;
+        while(aux != NULL){
+            if(buscarElemento(aux->data,b) == NULL){
+                dllInsertFirst(blz, aux->data);
+            }
+            num_comp++;
+            aux = aux->next;
         }
-        num_comp++;
-        b = removerBARB(a->noEsquerdo,b);
-        b = removerBARB(a->noDireito,b);
     }
-    return b;
+    return blz;
 }
 
