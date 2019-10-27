@@ -1,14 +1,15 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "geral.h"
 #include "btree.h"
 #define _BTREE_C_
 
+struct t_elemento{
+	int num;
+};
 
 struct s_no{
 	t_no *esq;
+	t_elemento dado;
 	t_no *dir;
-	int dado;
 };
 
 t_no *criaNoBT(int i)
@@ -18,11 +19,11 @@ t_no *criaNoBT(int i)
 	novo = (t_no *) malloc (sizeof(t_no));
 	if(novo != NULL)
 	{
-		novo->esq = novo->dir = NULL;
+		novo->esq = novo->dir = novo->dado.num = NULL;
 	}
 
     FILE *arquivo;
-    int valor;
+    t_elemento valor;
     if(i == 1){
         arquivo = fopen("dados/dadosA.txt", "r");
     }else if(i == 2){
@@ -30,9 +31,8 @@ t_no *criaNoBT(int i)
     }
 
     if(i == 1 || i == 2){
-        while((fscanf(arquivo,"%d",&valor) != EOF)){
+        while((fscanf(arquivo,"%d",&valor.num) != EOF)){
             inserir(novo, valor);
-
         }
         fclose(arquivo);
     }
@@ -50,25 +50,25 @@ bool isVazia (t_no *no)
 	return result;
 }
 
-int comparaB(int item1, int item2)
+int comparaBT(t_elemento item1, t_elemento item2)
 {
 	int result = 0;
 
-	if(item1 > item2)
+	if(item1.num > item2.num)
 		result = 1;
-	else if(item1 < item2)
+	else if(item1.num < item2.num)
 		result = -1;
 
 	return result;
 }
 
-t_no *busca (t_arvore raiz, int dado)
+t_no *busca (t_arvore raiz, t_elemento dado)
 {
 	t_no *no = NULL;
 
 	if(raiz != NULL)
 	{
-		if(comparaB(raiz->dado, dado) == 0)
+		if(comparaBT(raiz->dado, dado) == 0)
 			no = raiz;
 		else
 		{
@@ -82,7 +82,7 @@ t_no *busca (t_arvore raiz, int dado)
 	return no;
 }
 
-t_no *buscaSetPai (t_arvore raiz, int dado, t_no **pai)
+t_no *buscaSetPai (t_arvore raiz, t_elemento dado, t_no **pai)
 {
 	t_no *no = NULL;
 
@@ -90,13 +90,13 @@ t_no *buscaSetPai (t_arvore raiz, int dado, t_no **pai)
 		*pai = NULL;
 	else
 	{
-		if(comparaB(raiz->dado, dado) == 0)
+		if(comparaBT(raiz->dado, dado) == 0)
 			no = raiz;
 		else
 		{
 			*pai = raiz;
 
-			if(comparaB(raiz->dado, dado) > 0)
+			if(comparaBT(raiz->dado, dado) > 0)
 				no = buscaSetPai(raiz->esq, dado, pai);
 			else
 				no = buscaSetPai(raiz->dir, dado, pai);
@@ -106,7 +106,7 @@ t_no *buscaSetPai (t_arvore raiz, int dado, t_no **pai)
 	return no;
 }
 
-bool inserir (t_arvore *raiz, int item)
+bool inserir (t_arvore *raiz, t_elemento item)
 {
 	bool result = false;
 
@@ -122,16 +122,16 @@ bool inserir (t_arvore *raiz, int item)
 	}
 	else
 	{
-		if(comparaB((*raiz)->dado, item) > 0)
+		if(comparaBT((*raiz)->dado, item) > 0)
 			result = inserir(&((*raiz)->esq), item);
-		else if(comparaB((*raiz)->dado, item) < 0)
+		else if(comparaBT((*raiz)->dado, item) < 0)
 			result = inserir(&((*raiz)->dir), item);
 	}
 
 	return result;
 }
 
-bool remover (t_arvore *raiz, int item)
+bool remover (t_arvore *raiz, t_elemento item)
 {
 	bool result = false;
 	t_no *no, *pai, *sub, *paiSuc, *suc;
@@ -199,12 +199,52 @@ void esvaziar (t_arvore *raiz)
 	}
 }
 
-void exibirPreOrdem(t_arvore raiz)
+void exibirPreOrdem (t_arvore raiz)
 {
 	if(raiz != NULL)
 	{
-		printf("%d ", raiz->dado);
+		printf("%d ", raiz->dado.num);
 		exibirPreOrdem(raiz->esq);
 		exibirPreOrdem(raiz->dir);
 	}
+}
+
+void iguaisBT(t_arvore a, t_arvore b)
+{
+	if(a != NULL)
+	{
+		if(busca(b, a->dado) != NULL){
+            printf("%d ",a->dado.num);
+		}
+		iguaisBT(a->esq, b);
+		iguaisBT(a->dir, b);
+	}
+}
+
+t_no *inserirBABT(t_arvore a, t_arvore b)
+{
+	if(a != NULL)
+	{
+		if(busca(b, a->dado) == NULL){
+            inserir(b, a->dado);
+		}
+		b = inserirBABT(a->esq, b);
+		b = inserirBABT(a->dir, b);
+	}
+
+	return b;
+}
+
+t_no *removerABBT(t_arvore a, t_arvore b)
+{
+	if(a != NULL)
+	{
+		if(busca(b, a->dado) == NULL){
+            remover(b, a->dado);
+		}
+		b = removerABBT(a->esq, b);
+		b = removerABBT(a->dir, b);
+	}
+
+	return b;
 }

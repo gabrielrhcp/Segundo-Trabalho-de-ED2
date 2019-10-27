@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "geral.h"
 #include "rbtree.h"
 #define _RBTREE_C_
 
@@ -550,7 +549,6 @@ void igualRB(tipoNo *a, tipoNo *b){
 tipoNo* inserirBARB(tipoNo *a, tipoNo *b){
     if(a != NULL){
         if(buscarElemento(a->dado,b) == NULL){
-            printf("nao contem0: %d\n",a->dado);
             inserirArvore(a->dado,&b);
         }
         inserirBARB(a->noEsquerdo,b);
@@ -562,7 +560,6 @@ tipoNo* inserirBARB(tipoNo *a, tipoNo *b){
 tipoNo* removerBARB(tipoNo *a, tipoNo *b){
     if(a != NULL){
         if(buscarElemento(a->dado,b) != NULL){
-            printf("iguais: %d\n",a->dado);
             b = removerElemento(a->dado,b);
         }
         b = removerBARB(a->noEsquerdo,b);

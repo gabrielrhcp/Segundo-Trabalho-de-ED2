@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#define TRUE 1
-#define FALSE !1
 #ifndef _AVLTREE_H_
 #define _AVLTREE_H_
 

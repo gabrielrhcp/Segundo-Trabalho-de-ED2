@@ -61,36 +61,42 @@
 
 1571760190 c:\users\gabie\onedrive\documents\segundo-trabalho-de-ed2-master\btree.h
 
-1571746492 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\avltree.c
+1572100540 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\avltree.c
+	"geral.h"
 	"avltree.h"
 
-1571746492 c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\avltree.h
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
+1572036774 c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\avltree.h
 
-1572024096 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\btree.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
+1572104082 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\btree.c
+	"geral.h"
 	"btree.h"
 
-1572024068 c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\btree.h
+1572027204 c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\btree.h
 
-1571746492 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\lista.c
+1572100784 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\lista.c
+	"geral.h"
+	"lista.h"
 
-1571746492 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\rbtree.c
-	<stdio.h>
-	<stdlib.h>
+1572100511 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\rbtree.c
+	"geral.h"
 	"rbtree.h"
 
-1571746492 c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\rbtree.h
+1572036702 c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\rbtree.h
 
-1572024016 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\main.c
+1572100511 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\main.c
+	"geral.h"
 	"avltree.h"
 	"rbtree.h"
 	"btree.h"
+	"lista.h"
+
+1572100784 c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\lista.h
+
+1572036774 c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\geral.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
 	<time.h>
 
-1571746492 c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\lista.h
+1572101533 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-master\hash.c
 

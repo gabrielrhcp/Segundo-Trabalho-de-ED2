@@ -1,9 +1,15 @@
+#include "geral.h"
 #include "avltree.h"
 #include "rbtree.h"
 #include "btree.h"
-#include <time.h>
+#include "lista.h"
+
 
 int main(){
+
+    // LISTA
+    DLList *listA;
+    DLList *listB;
 
     // ARVORE BINARIA
     t_arvore btA;
@@ -23,7 +29,7 @@ int main(){
 
 
     printf("Escolha como armazenar:\n");
-    printf("[1] Lista encadeada\n[2] Arvore binaria\n[3] Arvore AVL\n[4] Arvore rubro-negra\nDigite: ");
+    printf("[1] Lista encadeada\n[2] Hash\n[3] Arvore binaria\n[4] Arvore AVL\n[5] Arvore rubro-negra\nDigite: ");
     scanf("%d",&ma);
 
     printf("O que voce quer fazer?\n");
@@ -34,19 +40,93 @@ int main(){
 
 // lera o arquivo e armazenara de arcordo com a esolha feita
     switch(ma){
-        case 1:
 
+        // LISTA ENCADEADA
+        case 1:
+            listA = dllCreate(1);
+            listB = dllCreate(2);
+            printf("\nDados A: \n");
+            printLista(listA);
+            printf("\n\nDados B: \n");
+            printLista(listB);
+
+            switch(oqf){
+                case 1:
+                    printf("\n\nIguais:\n");
+                    t_ini = time(NULL);
+                    DLLprintIguais(listA, listB, dllCmp);
+                    t_fim = time(NULL);
+                    printf("\n");
+                    // 1 10 12 15 35 4 6 100 25 48 29 7
+                    break;
+                case 2:
+                    printf("\n");
+                    t_ini = time(NULL);
+                    DLLinserirListaBA(listA,listB,dllCmp);
+                    t_fim = time(NULL);
+                    printf("\nDados B com os elementos de A inseridos:\n");
+                    printLista(listB);
+                    printf("\n");
+                    break;
+                    // 2 3 24 8 36
+                    break;
+                default:
+                    printf("\n");
+                    t_ini = time(NULL);
+                    DLLremoverListaAB(listB, listA, dllCmp);
+                    t_fim = time(NULL);
+                    printf("\nRemovidos os elementos de A q tbm estao em B:\n");
+                    printLista(listA);
+                    printf("\n");
+                    // 8 2 3 24 36
+                    break;
+            }
             break;
-        case 2:
+
+        // ARVORE BINARIA
+        case 3:
             btA = criaNoBT(1);
             btB = criaNoBT(2);
             printf("\nDados A: \n");
             exibirPreOrdem(btA);
             printf("\n\nDados B: \n");
             exibirPreOrdem(btB);
+
+            switch(oqf){
+                case 1:
+                    printf("\n\nIguais:\n");
+                    t_ini = time(NULL);
+                    iguaisBT(btA, btB);
+                    t_fim = time(NULL);
+                    printf("\n");
+                    // 1 10 12 15 35 4 6 100 25 48 29 7
+                    break;
+                case 2:
+                    printf("\n");
+                    t_ini = time(NULL);
+                    btB = inserirBABT(btA, btB);
+                    t_fim = time(NULL);
+                    printf("\nDados B com os elementos de A inseridos:\n");
+                    exibirPreOrdem(btB);
+                    printf("\n");
+                    break;
+                    // 2 3 24 8 36
+                    break;
+                default:
+                    printf("\n");
+                    t_ini = time(NULL);
+                    btA = removerABBT(btB, btA);
+                    t_fim = time(NULL);
+                    printf("\nRemovidos os elementos de A q tbm estao em B:\n");
+                    exibirPreOrdem(btA);
+                    printf("\n");
+                    // 8 2 3 24 36
+                    break;
+            }
             break;
 
-        case 3:
+        // ARVORE AVL
+        case 4:
             avlA = createAvlTree(1);
             avlB = createAvlTree(2);
             printf("\nDados A: \n");
@@ -73,7 +153,7 @@ int main(){
                     printf("\n");
                     break;
                 default:
-                    //
+                    // 8 2 3 24 36
                     printf("\n");
                     t_ini = time(NULL);
                     avlA = removeBA(avlB, avlA);
@@ -85,6 +165,7 @@ int main(){
             }
             break;
 
+        // ARVORE RUBRO NEGRA
         default:
             criarArvoreRB(&rbA,1);
             criarArvoreRB(&rbB,0);
@@ -120,7 +201,7 @@ int main(){
                     printf("\nRemovidos os elementos de A q tbm estao em B:\n");
                     preOrderRB(rbA);
                     printf("\n");
-                    //
+                    // 8 2 3 24 36
                     break;
             }
             break;

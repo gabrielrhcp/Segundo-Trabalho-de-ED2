@@ -1,5 +1,3 @@
-#define TRUE 1
-#define FALSE !1
 #define RUB 0
 #define NEG 1
 #define N_MAX 1027
