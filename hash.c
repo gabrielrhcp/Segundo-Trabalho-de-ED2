@@ -7,26 +7,20 @@ struct _hashOpen_{
 	int maxSize;
 	int * flags;
 	int * keys;
-	void ** vals;
+	int * vals;
 };
 
-HashOpen * hlCreate(int size, int dados){
+HashOpen * hlCreate(int size, char dados[]){
 	HashOpen * hl = (HashOpen*)malloc(sizeof(HashOpen));
-	FILE *arq;
-	int aux;
-
 	if(hl != NULL){
 		hl->currentSize = 0;
 		hl->maxSize = size;
 		hl->flags = calloc(size, sizeof(int));
 		hl->keys = (int*)malloc(sizeof(int)*size);
-		hl->vals = (void**)malloc(sizeof(void*)*size);
-
-        if(dados == 1){  // se igual 1 lera o arquivo com os dados A, caso contrario dados B
-            arq = fopen("dados/dadosA.txt","r");
-        }else{
-            arq = fopen("dados/dadosB.txt","r");
-        }
+		hl->vals = (int*)malloc(sizeof(int)*size);
+		FILE *arq;
+        arq = fopen(dados,"r");
+        int aux;
         while(fscanf(arq,"%d",&aux) != EOF){
             hlInsertLinear(hl, hl->currentSize, (void*)aux);
         }
@@ -40,7 +34,7 @@ int hlClear(HashOpen * hl){
 	if(hl != NULL){
 		hl->currentSize = 0;
 		hl->keys = (int*)malloc(sizeof(int)*hl->maxSize);
-		hl->vals = (void**)malloc(sizeof(void*)*hl->maxSize);
+		hl->vals = (int*)malloc(sizeof(int*)*hl->maxSize);
 		return TRUE;
 	}
 	return FALSE;
@@ -50,7 +44,7 @@ int hlGetSize(HashOpen * hl){
 	if(hl != NULL){
 		return hl->currentSize;
 	}
-	return -1;
+	return FALSE;
 }
 
 int hlIsFull(HashOpen * hl){
@@ -71,12 +65,16 @@ int hlIsEmpty(HashOpen * hl){
 	return FALSE;
 }
 
-int hlInsertLinear(HashOpen * hl, int key, void * data){
+int * hlGetValues(HashOpen * hl){
+	return hl->vals;
+}
+
+int hlInsertLinear(HashOpen * hl, int key, int data){
 	if(hl != NULL){
 		int tmp = key % hl->maxSize;
 		int i = tmp;
 		do{
-			if(hl->flags[i] == NULL){
+			if(hl->flags[i] == 0){
 				hl->keys[i] = key;
 				hl->vals[i] = data;
 				hl->flags[i] = 1;
@@ -93,34 +91,28 @@ int hlInsertLinear(HashOpen * hl, int key, void * data){
 	return FALSE;
 }
 
-void *hlGetLinear(HashOpen * hl, int key){
+int hlGetLinear(HashOpen * hl, int key){
 	if(hl != NULL){
 		int i = key % hl->maxSize;
-		while(hl->flags[i] == 1){
-			if(hl->keys[i] == key){
-				return hl->vals[i];
+        int tmp = i;
+		do{
+            num_comp++;
+			if(hl->flags[i] == 1){
+                num_comp++;
+				if(hl->vals[i] == key){
+                    return hl->vals[i];
+                }
 			}
-			i = (i+1) % hl->maxSize;
-		}
+			i = (i + 1) % hl->maxSize;
+            num_comp++;
+		} while(i != tmp);
 	}
-	return NULL;
+	return -1;
 }
 
-void *hlGetLinearValor(HashOpen * hl, int key, int valor){
-	if(hl != NULL){
-		int i = key % hl->maxSize;
-		while(hl->flags[i] == 1){
-			if(hl->vals[i] == valor){
-				return hl->vals[i];
-			}
-			i = (i+1) % hl->maxSize;
-		}
-	}
-	return NULL;
-}
-
-int hlContainsLinear(HashOpen * hl, int key){
-	if(hlGetLinear(hl, key) != NULL){
+int hlContainsLinear(HashOpen *hl, int key){
+    num_comp++;
+	if(hlGetLinear(hl, key) != -1){
 		return TRUE;
 	}
 	return FALSE;
@@ -136,13 +128,13 @@ int hlRemoveLinear(HashOpen * hl, int key){
 			i = (i + 1) % hl->maxSize;
 		}
 		hl->flags[i] = 0;
-		hl->vals[i] = NULL;
+		hl->vals[i] = 0;
 		i = (i + 1) % hl->maxSize;
 		while(hl->flags[i] == 1){
 			int keyT = hl->keys[i];
-			void * dataT = hl->vals[i];
+			int dataT = hl->vals[i];
 			hl->flags[i] = 0;
-			hl->vals[i] = NULL;
+			hl->vals[i] = 0;
 			hl->currentSize--;
 			hlInsertLinear(hl, keyT, dataT);
 		}
@@ -152,26 +144,28 @@ int hlRemoveLinear(HashOpen * hl, int key){
 	return FALSE;
 }
 
-
 void hlPrint(HashOpen * hl){
 	if(hl != NULL){
 		for(int i = 0; i < hl->maxSize; i++){
 			if(hl->flags[i] == 1){
-				printf("%d|%d ",(int)hl->vals[i],hl->keys[i]);
+				printf("%d|%d ", hl->keys[i], hl->vals[i]);
 			}
 		}
 	}
 }
 
-void hlIguais(HashOpen *a, HashOpen *b){
-    if(a!= NULL && b!= NULL){
-        for(int i = 0; i < a->maxSize; i++){
-            if(a->flags[i] == 1){
-                if(hlGetLinearValor(b, a->keys[i], (int)a->vals[i]) == a->vals[i]){
-                    printf("%d ",(int)a->vals[i]);
-                }
+void hlIguais(DLList *a, HashOpen *b){
+    DLNode *aux;
+    if(a != NULL && b != NULL){
+        aux = a->first;
+        while(aux != NULL){
+            num_comp++;
+            if(hlContainsLinear(b, (int)aux->data) == TRUE){
+                printf("%d ",aux->data);
             }
+            num_comp++;
+            aux = aux->next;
         }
+        num_comp++;
     }
 }
-

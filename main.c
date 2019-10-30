@@ -8,14 +8,14 @@
 int main(){
     // VARIAVEIS AUXILIARES
     num_comp = 0;
+    num_atb = 0;
 
     // LISTA
     DLList *list;
     DLList *list2;
 
     // HASH
-    HashOpen *hashA;
-    HashOpen *hashB;
+    HashOpen *hash;
 
     // ARVORE BINARIA
     t_arvore bt;
@@ -29,226 +29,235 @@ int main(){
     int ma; // metodo de armazenamento
     int oqf; // escolha feita pelo usuario, oq fazer
     time_t t_ini = 0 , t_fim = 0;
-
-
-    printf("Escolha como armazenar:\n");
-    printf("[1] Lista encadeada\n[2] Hash\n[3] Arvore binaria\n[4] Arvore AVL\n[5] Arvore rubro-negra\nDigite: ");
-    scanf("%d",&ma);
-
-    printf("O que voce quer fazer?\n");
-    printf("[1] Buscar os elementos de A que estao em B\n");
-    printf("[2] Inserir em B, os elementos de A que estão em B\n");
-    printf("[3] Remover os elementos de A que estão em B\nDigite: ");
-    scanf("%d",&oqf);
     list = dllCreate("dados/dadosA.txt");
     char dadosB[] = "dados/dadosB.txt";
-// lera o arquivo e armazenara de arcordo com a esolha feita
-    switch(ma){
+    int menu_control;
 
-        // LISTA ENCADEADA
-        case 1:
-            list2 = dllCreate("dados/dadosB.txt");
-            printf("\nDados A: \n");
-            printLista(list);
-            printf("\n\nDados B: \n");
-            printLista(list2);
+    do{
+        num_comp = 0;
+        num_atb = 0;
+        system("cls");
+        printf("Escolha como armazenar:\n");
+        printf("[1] Lista encadeada\n[2] Hash\n[3] Arvore binaria\n[4] Arvore AVL\n[5] Arvore rubro-negra\nDigite: ");
+        scanf("%d",&ma);
 
-            switch(oqf){
-                case 1:
-                    printf("\n\nIguais:\n");
-                    t_ini = time(NULL);
-                    DLLprintIguais(list, list2, dllCmp);
-                    t_fim = time(NULL);
-                    printf("\n");
-                    // 1 10 12 15 35 4 6 100 25 48 29 7
-                    break;
-                case 2:
-                    printf("\n");
-                    t_ini = time(NULL);
-                    DLLinserirListaBA(list,list2,dllCmp);
-                    t_fim = time(NULL);
-                    printf("\nDados B com os elementos de A inseridos:\n");
-                    printLista(list2);
-                    printf("\n");
-                    break;
-                    // 2 3 24 8 36
-                    break;
-                default:
-                    printf("\n");
-                    t_ini = time(NULL);
-                    DLLremoverListaAB(list2, list, dllCmp);
-                    t_fim = time(NULL);
-                    printf("\nRemovidos os elementos de A q tbm estao em B:\n");
-                    printLista(list);
-                    printf("\n");
-                    // 8 2 3 24 36
-                    break;
-            }
-            break;
-        // HASH
-        case 2:
-            hashA = hlCreate(20,1);
-            hashB = hlCreate(20,2);
-            printf("\nDados A: \n");
-            printLista(list);
-            printf("\n\nDados B: \n");
-            hlPrint(hashB);
+        printf("O que voce quer fazer?\n");
+        printf("[1] Buscar os elementos de A que estao em B\n");
+        printf("[2] Inserir em B, os elementos de A que estão em B\n");
+        printf("[3] Remover os elementos de A que estão em B\nDigite: ");
+        scanf("%d",&oqf);
 
-            switch(oqf){
-                case 1:
-                    printf("\n\nIguais:\n");
-                    t_ini = time(NULL);
-                    hlIguais(hashA, hashB);
-                    t_fim = time(NULL);
-                    printf("\n");
-                    // 1 10 12 15 35 4 6 100 25 48 29 7
-                    break;
-                case 2:
-                    printf("\n");
-                    t_ini = time(NULL);
+    // lera o arquivo e armazenara de arcordo com a esolha feita
+        switch(ma){
 
-                    t_fim = time(NULL);
-                    printf("\nDados B com os elementos de A inseridos:\n");
+            // LISTA ENCADEADA
+            case 1:
+                list2 = dllCreate(dadosB);
+                printf("\nDados A: \n");
+                printLista(list);
+                printf("\n\nDados B: \n");
+                printLista(list2);
 
-                    printf("\n");
-                    break;
-                    // 2 3 24 8 36
-                    break;
-                default:
-                    printf("\n");
-                    t_ini = time(NULL);
+                switch(oqf){
+                    case 1:
+                        printf("\n\nIguais:\n");
+                        t_ini = time(NULL);
+                        DLLprintIguais(list, list2, dllCmp);
+                        t_fim = time(NULL);
+                        printf("\n");
+                        // 1 10 12 15 35 4 6 100 25 48 29 7
+                        break;
+                    case 2:
+                        printf("\n");
+                        t_ini = time(NULL);
+                        DLLinserirListaBA(list,list2,dllCmp);
+                        t_fim = time(NULL);
+                        printf("\nDados B com os elementos de A inseridos:\n");
+                        printLista(list2);
+                        printf("\n");
+                        break;
+                        // 2 3 24 8 36
+                        break;
+                    default:
+                        printf("\n");
+                        t_ini = time(NULL);
+                        DLLremoverListaAB(list2, list, dllCmp);
+                        t_fim = time(NULL);
+                        printf("\nRemovidos os elementos de A q tbm estao em B:\n");
+                        printLista(list);
+                        printf("\n");
+                        // 8 2 3 24 36
+                        break;
+                }
+                break;
 
-                    t_fim = time(NULL);
-                    printf("\nRemovidos os elementos de A q tbm estao em B:\n");
+            // HASH
+            case 2:
+                hash = hlCreate(100, dadosB);
+                printf("\nDados A: \n");
+                printLista(list);
+                printf("\n\nDados B(key|chave):\n");
+                hlPrint(hash);
 
-                    printf("\n");
-                    //
-                    break;
-            }
-            break;
+                switch(oqf){
+                    case 1:
+                        printf("\n\nIguais:\n");
+                        t_ini = time(NULL);
+                        hlIguais(list, hash);
+                        t_fim = time(NULL);
+                        printf("\n");
+                        // 1 10 12 15 35 4 6 100 25 48 29 7
+                        break;
+                    case 2:
+                        printf("\n");
+                        t_ini = time(NULL);
 
-        // ARVORE BINARIA
-        case 3:
-            bt = criaNoBT(dadosB);
-            printf("\nDados A: \n");
-            printLista(list);
-            printf("\n\nDados B: \n");
-            exibirPreOrdem(bt);
+                        t_fim = time(NULL);
+                        printf("\nDados B com os elementos de A inseridos:\n");
 
-            switch(oqf){
-                case 1:
-                    printf("\n\nIguais:\n");
-                    t_ini = time(NULL);
-                    iguaisBT(list, bt);
-                    t_fim = time(NULL);
-                    printf("\n");
-                    // 1 10 12 15 35 4 6 100 25 48 29 7
-                    break;
-                case 2:
-                    printf("\n");
-                    t_ini = time(NULL);
-                    inserirBABT(list, bt);
-                    t_fim = time(NULL);
-                    printf("\nDados B com os elementos de A inseridos:\n");
-                    exibirPreOrdem(bt);
-                    printf("\n");
-                    break;
-                    // 2 3 24 8 36
-                    break;
-                default:
-                    printf("\n");
-                    t_ini = time(NULL);
-                    list = removerABBT(list, bt);
-                    t_fim = time(NULL);
-                    printf("\nRemovidos os elementos de A q tbm estao em B:\n");
-                    printLista(list);
-                    printf("\n");
-                    // 8 2 3 24 36
-                    break;
-            }
-            break;
+                        printf("\n");
+                        break;
+                        // 2 3 24 8 36
+                        break;
+                    default:
+                        printf("\n");
+                        t_ini = time(NULL);
 
-        // ARVORE AVL
-        case 4:
-            avl = createAvlTree(dadosB);
-            printf("\nDados A: \n");
-            printLista(list);
-            printf("\n\nDados B:\n");
-            preOrder(avl);
-            switch(oqf){
-                case 1:
-                    printf("\n\nIguais:\n");
-                    t_ini = time(NULL);
-                    iguaisAVL(list, avl);
-                    t_fim = time(NULL);
-                    printf("\n");
-                    // 1 10 12 15 35 4 6 100 25 48 29 7
-                    break;
-                case 2:
-                    // 2 3 24 8 36
-                    printf("\n");
-                    t_ini = time(NULL);
-                    inserirBA(list, avl);
-                    t_fim = time(NULL);
-                    printf("\nDados B com os elementos de A inseridos:\n");
-                    preOrder(avl);
-                    printf("\n");
-                    break;
-                default:
-                    // 8 2 3 24 36
-                    printf("\n");
-                    t_ini = time(NULL);
-                    list = removeBA(list, avl);
-                    t_fim = time(NULL);
-                    printf("\nRemovidos os elementos de A q tbm estao em B:\n");
-                    printLista(list);
-                    printf("\n");
-                    break;
-            }
-            break;
+                        t_fim = time(NULL);
+                        printf("\nRemovidos os elementos de A q tbm estao em B:\n");
 
-        // ARVORE RUBRO NEGRA
-        default:
-            criarArvoreRB(&rb,dadosB);
-            printf("\nDados A: \n");
-            printLista(list);
-            printf("\n\nDados B: \n");
-            preOrderRB(rb);
+                        printf("\n");
+                        //
+                        break;
+                }
+                break;
 
-            switch(oqf){
-                case 1:
-                    printf("\n\nIguais:\n");
-                    t_ini = time(NULL);
-                    igualRB(list,rb);
-                    t_fim = time(NULL);
-                    printf("\n");
-                    // 1 10 12 15 35 4 6 100 25 48 29 7
-                    break;
-                case 2:
-                    printf("\n");
-                    t_ini = time(NULL);
-                    inserirBARB(list, rb);
-                    t_fim = time(NULL);
-                    printf("\nDados B com os elementos de A inseridos:\n");
-                    preOrderRB(rb);
-                    printf("\n");
-                    // 2 3 24 8 36
-                    break;
-                default:
-                    printf("\n");
-                    t_ini = time(NULL);
-                    list = removerBARB(list, rb);
-                    t_fim = time(NULL);
-                    printf("\nRemovidos os elementos de A q tbm estao em B:\n");
-                    printLista(list);
-                    printf("\n");
-                    // 8 2 3 24 36
-                    break;
-            }
-            break;
-    }
-    printf("\nNumero de comparacoes: %d\n",num_comp);
-    printf("\n\nTempo: %f\n",difftime(t_fim, t_ini));
+            // ARVORE BINARIA
+            case 3:
+                bt = criaNoBT(dadosB);
+                printf("\nDados A: \n");
+                printLista(list);
+                printf("\n\nDados B: \n");
+                exibirPreOrdem(bt);
+
+                switch(oqf){
+                    case 1:
+                        printf("\n\nIguais:\n");
+                        t_ini = time(NULL);
+                        iguaisBT(list, bt);
+                        t_fim = time(NULL);
+                        printf("\n");
+                        // 1 10 12 15 35 4 6 100 25 48 29 7
+                        break;
+                    case 2:
+                        printf("\n");
+                        t_ini = time(NULL);
+                        inserirBABT(list, bt);
+                        t_fim = time(NULL);
+                        printf("\nDados B com os elementos de A inseridos:\n");
+                        exibirPreOrdem(bt);
+                        printf("\n");
+                        break;
+                        // 2 3 24 8 36
+                        break;
+                    default:
+                        printf("\n");
+                        t_ini = time(NULL);
+                        list = removerABBT(list, bt);
+                        t_fim = time(NULL);
+                        printf("\nRemovidos os elementos de A q tbm estao em B:\n");
+                        printLista(list);
+                        printf("\n");
+                        // 8 2 3 24 36
+                        break;
+                }
+                break;
+
+            // ARVORE AVL
+            case 4:
+                avl = createAvlTree(dadosB);
+                printf("\nDados A: \n");
+                printLista(list);
+                printf("\n\nDados B:\n");
+                preOrder(avl);
+                switch(oqf){
+                    case 1:
+                        printf("\n\nIguais:\n");
+                        t_ini = time(NULL);
+                        iguaisAVL(list, avl);
+                        t_fim = time(NULL);
+                        printf("\n");
+                        // 1 10 12 15 35 4 6 100 25 48 29 7
+                        break;
+                    case 2:
+                        // 2 3 24 8 36
+                        printf("\n");
+                        t_ini = time(NULL);
+                        inserirBA(list, avl);
+                        t_fim = time(NULL);
+                        printf("\nDados B com os elementos de A inseridos:\n");
+                        preOrder(avl);
+                        printf("\n");
+                        break;
+                    default:
+                        // 8 2 3 24 36
+                        printf("\n");
+                        t_ini = time(NULL);
+                        list = removeBA(list, avl);
+                        t_fim = time(NULL);
+                        printf("\nRemovidos os elementos de A q tbm estao em B:\n");
+                        printLista(list);
+                        printf("\n");
+                        break;
+                }
+                break;
+
+            // ARVORE RUBRO NEGRA
+            default:
+                criarArvoreRB(&rb,dadosB);
+                printf("\nDados A: \n");
+                printLista(list);
+                printf("\n\nDados B: \n");
+                preOrderRB(rb);
+
+                switch(oqf){
+                    case 1:
+                        printf("\n\nIguais:\n");
+                        t_ini = time(NULL);
+                        igualRB(list,rb);
+                        t_fim = time(NULL);
+                        printf("\n");
+                        // 1 10 12 15 35 4 6 100 25 48 29 7
+                        break;
+                    case 2:
+                        printf("\n");
+                        t_ini = time(NULL);
+                        inserirBARB(list, rb);
+                        t_fim = time(NULL);
+                        printf("\nDados B com os elementos de A inseridos:\n");
+                        preOrderRB(rb);
+                        printf("\n");
+                        // 2 3 24 8 36
+                        break;
+                    default:
+                        printf("\n");
+                        t_ini = time(NULL);
+                        list = removerBARB(list, rb);
+                        t_fim = time(NULL);
+                        printf("\nRemovidos os elementos de A q tbm estao em B:\n");
+                        printLista(list);
+                        printf("\n");
+                        // 8 2 3 24 36
+                        break;
+                }
+                break;
+        }
+        printf("\nNumero de comparacoes: %d\n",num_comp);
+        printf("Tempo: %f\n",difftime(t_fim, t_ini));
+
+        printf("\nDeseja continuar?\n[1] Sim\n[2] Nao\nDigite: ");
+        scanf("%d",&menu_control);
+    }while(menu_control == 1);
 }
 
 /*

@@ -26,7 +26,7 @@ t_no *criaNoBT(char a[])
     t_elemento valor;
     arquivo = fopen(a, "r");
     while((fscanf(arquivo,"%d",&valor.num) != EOF)){
-        inserir(novo, valor);
+        inserirNaCriacao(novo, valor);
     }
     fclose(arquivo);
 
@@ -46,11 +46,25 @@ bool isVazia (t_no *no)
 int comparaBT(t_elemento item1, t_elemento item2)
 {
 	int result = 0;
+    num_comp++;
+	if(item1.num > item2.num){
+        return 1;
+	}else if(++num_comp && item1.num < item2.num){
+        result = -1;
+	}
 
-	if(item1.num > item2.num)
-		result = 1;
-	else if(item1.num < item2.num)
-		result = -1;
+
+	return result;
+}
+
+int comparaBTCriacao(t_elemento item1, t_elemento item2)
+{
+	int result = 0;
+	if(item1.num > item2.num){
+        return 1;
+	}else if(item1.num < item2.num){
+        result = -1;
+	}
 
 	return result;
 }
@@ -58,23 +72,21 @@ int comparaBT(t_elemento item1, t_elemento item2)
 t_no *busca (t_arvore raiz, t_elemento dado)
 {
 	t_no *no = NULL;
-
+    num_comp++;
 	if(raiz != NULL)
 	{
+	    num_comp++;
 		if(comparaBT(raiz->dado, dado) == 0)
 			no = raiz;
 		else
 		{
 			no = busca(raiz->esq, dado);
-
+            num_comp++;
 			if(no == NULL){
                 no = busca(raiz->dir, dado);
 			}
-            num_comp++;
 		}
-		num_comp++;
 	}
-	num_comp++;
 
 	return no;
 }
@@ -82,17 +94,17 @@ t_no *busca (t_arvore raiz, t_elemento dado)
 t_no *buscaSetPai (t_arvore raiz, t_elemento dado, t_no **pai)
 {
 	t_no *no = NULL;
-
+    num_comp++;
 	if(raiz == NULL)
 		*pai = NULL;
 	else
-	{
+	{   num_comp++;
 		if(comparaBT(raiz->dado, dado) == 0)
 			no = raiz;
 		else
 		{
 			*pai = raiz;
-
+            num_comp++;
 			if(comparaBT(raiz->dado, dado) > 0)
 				no = buscaSetPai(raiz->esq, dado, pai);
 			else
@@ -106,11 +118,36 @@ t_no *buscaSetPai (t_arvore raiz, t_elemento dado, t_no **pai)
 bool inserir (t_arvore *raiz, t_elemento item)
 {
 	bool result = false;
-
+    num_comp++;
 	if(*raiz == NULL)
 	{
 		*raiz = criaNoBT(0);
+        num_comp++;
+		if(*raiz != NULL)
+		{
+			(*raiz)->dado = item;
+			result = true;
+		}
+	}
+	else
+	{   num_comp++;
+		if(comparaBT((*raiz)->dado, item) > 0){
+            result = inserir(&((*raiz)->esq), item);
+		}else if(++num_comp && comparaBT((*raiz)->dado, item) < 0){
+            result = inserir(&((*raiz)->dir), item);
+		}
 
+	}
+
+	return result;
+}
+
+bool inserirNaCriacao(t_arvore *raiz, t_elemento item)
+{
+	bool result = false;
+	if(*raiz == NULL)
+	{
+		*raiz = criaNoBT(0);
 		if(*raiz != NULL)
 		{
 			(*raiz)->dado = item;
@@ -119,81 +156,15 @@ bool inserir (t_arvore *raiz, t_elemento item)
 	}
 	else
 	{
-		if(comparaBT((*raiz)->dado, item) > 0)
-			result = inserir(&((*raiz)->esq), item);
-		else if(comparaBT((*raiz)->dado, item) < 0)
-			result = inserir(&((*raiz)->dir), item);
-	}
-
-	return result;
-}
-
-bool remover (t_arvore *raiz, t_elemento item)
-{
-	bool result = false;
-	t_no *no, *pai, *sub, *paiSuc, *suc;
-
-	no = pai = sub = paiSuc = suc = NULL;
-
-	no = buscaSetPai(*raiz, item, &pai);
-	if(no != NULL)
-	{
-		if(no->esq == NULL)
-			sub = no->dir;
-		else
-		{
-			if(no->dir == NULL)
-				sub = no->esq;
-			else
-			{
-				paiSuc = no;
-				sub = no->dir;
-				suc = sub->esq;
-
-				while(suc != NULL)
-				{
-					paiSuc = sub;
-					sub = suc;
-					suc = sub->esq;
-				}
-
-				if(paiSuc != no)
-				{
-					paiSuc->esq = sub->dir;
-					sub->dir = no->dir;
-				}
-
-				sub->esq = no->esq;
-			}
-		}
-
-		if(pai == NULL)
-			*raiz = sub;
-		else
-		{
-			if(no == pai->esq)
-				pai->esq = sub;
-			else
-				pai->dir = sub;
-
-			free(no);
-			result = true;
+		if(comparaBTCriacao((*raiz)->dado, item) > 0){
+            result = inserirNaCriacao(&((*raiz)->esq), item);
+		}else if(comparaBTCriacao((*raiz)->dado, item) < 0){
+            result = inserirNaCriacao(&((*raiz)->dir), item);
 		}
 
 	}
 
 	return result;
-}
-
-void esvaziar (t_arvore *raiz)
-{
-	if(*raiz != NULL)
-	{
-		esvaziar(&(*raiz)->esq);
-		esvaziar(&(*raiz)->dir);
-		free(*raiz);
-		*raiz = NULL;
-	}
 }
 
 void exibirPreOrdem (t_arvore raiz)
@@ -210,9 +181,11 @@ void iguaisBT(DLList *a, t_arvore b)
 {
 	DLNode *aux;
 	t_elemento aux2;
+	num_comp+=2;
     if(a != NULL && b != NULL){
         aux = a->first;
         while(aux != NULL){
+            num_comp++;
             aux2.num = (int)aux->data;
             if(busca(b,aux2) != NULL){
                 printf("%d ",aux2.num);
@@ -220,6 +193,7 @@ void iguaisBT(DLList *a, t_arvore b)
             num_comp++;
             aux = aux->next;
         }
+        num_comp++;
     }
 }
 
@@ -227,9 +201,11 @@ void inserirBABT(DLList *a, t_arvore *b)
 {
 	DLNode *aux;
 	t_elemento aux2;
+	num_comp+=2;
     if(a != NULL && b != NULL){
         aux = a->first;
         while(aux != NULL){
+            num_comp++;
             aux2.num = (int)aux->data;
             if(busca(b,aux2) == NULL){
                 inserir(*b, aux2);
@@ -237,6 +213,7 @@ void inserirBABT(DLList *a, t_arvore *b)
             num_comp++;
             aux = aux->next;
         }
+        num_comp++;
     }
 }
 
@@ -245,9 +222,11 @@ DLList *removerABBT(DLList *a, t_arvore *b)
 	t_elemento aux2;
     DLNode *aux;
     DLList *blz = dllCreate(NULL);
+    num_comp+=2;
     if(a != NULL && b != NULL){
         aux = a->first;
         while(aux != NULL){
+            num_comp++;
             aux2.num = (int)aux->data;
             if(busca(b,aux2) == NULL){
                 dllInsertFirst(blz, aux->data);
@@ -255,6 +234,7 @@ DLList *removerABBT(DLList *a, t_arvore *b)
             num_comp++;
             aux = aux->next;
         }
+        num_comp++;
     }
     return blz;
 }

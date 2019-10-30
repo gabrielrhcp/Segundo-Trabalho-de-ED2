@@ -7,3 +7,4 @@
 #define FALSE !1
 
 int num_comp;
+int num_atb;

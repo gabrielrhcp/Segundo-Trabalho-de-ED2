@@ -14,6 +14,7 @@ typedef struct _dllist_{
 DLList* sllCreate(char *a);
 int sllDestroy(DLList* list);
 int dllInsertFirst(DLList *list, void *data);
+int dllInsertFirstCriacao(DLList *list, void *data);
 void* dllQuery(DLList *list, void* key, int(*cmp)(void*,void*));
 void* dllRemoveSpec(DLList *list, void* key, int(*cmp)(void*,void*));
 int dllCmp(void * a, void * b);
