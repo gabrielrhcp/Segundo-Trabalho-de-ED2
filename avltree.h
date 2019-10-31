@@ -2,7 +2,13 @@
 #ifndef _AVLTREE_H_
 #define _AVLTREE_H_
 
-typedef struct node_tree Node;
+typedef struct node_tree{
+	int key; // valor
+	struct node_tree *left;
+	struct node_tree *right;
+	int height;
+}Node;
+
 Node* createAvlTree(char a[]);
 int max(int a, int b);
 int height(Node *N);
@@ -17,9 +23,9 @@ Node *insert(Node *node, int key);
 Node *insertCricao(Node *node, int key);
 Node *minValueNode(Node *node);
 void preOrder(Node *root);
-int compara(int a, Node *b);
+int comparaAVL(int a, Node *b);
 void iguaisAVL(DLList *a, Node *b);
-void inserirBA(DLList *a, Node *b);
-DLList *removeBA(DLList *a, Node *b);
+void inserirBAAVL(DLList *a, Node *b);
+DLList *removeBAAVL(DLList *a, Node *b);
 
 #endif // _AVLTREE_H_

@@ -2,15 +2,6 @@
 #include "avltree.h"
 #define _AVLTREE_C_
 
-// An AVL tree node
-struct node_tree
-{
-	int key;
-	Node *left;
-	Node *right;
-	int height;
-};
-
 // node = insert(node, key); -- assim q insere
 // node = deleteNode(node, key); -- assim q deleta
 // preOrder(node); -- assim q printa
@@ -282,7 +273,7 @@ void preOrder(Node *root)
 	}
 }
 
-int compara(int a, Node *b)
+int comparaAVL(int a, Node *b)
 {
     num_comp++;
     if(b != NULL)
@@ -293,7 +284,7 @@ int compara(int a, Node *b)
             return TRUE;
 	    }
 	    num_comp+=2;
-	    if(compara(a, b->left) != TRUE && compara(a, b->right) != TRUE)
+	    if(comparaAVL(a, b->left) != TRUE && comparaAVL(a, b->right) != TRUE)
         {
             return FALSE;
         }
@@ -313,7 +304,7 @@ void iguaisAVL(DLList *a, Node *b)
         aux = a->first;
         while(aux != NULL){
             num_comp++;
-            if(compara((int)aux->data,b) != NULL){
+            if(comparaAVL((int)aux->data,b) == TRUE){
                 printf("%d ",(int)aux->data);
             }
             num_comp++;
@@ -323,7 +314,7 @@ void iguaisAVL(DLList *a, Node *b)
     }
 }
 
-void inserirBA(DLList *a, Node *b)
+void inserirBAAVL(DLList *a, Node *b)
 {
     DLNode *aux;
     num_comp+=2;
@@ -331,7 +322,7 @@ void inserirBA(DLList *a, Node *b)
         aux = a->first;
         while(aux != NULL){
             num_comp++;
-            if(compara((int)aux->data,b) == NULL){
+            if(comparaAVL((int)aux->data,b) == FALSE){
                 b = insert(b,(int)aux->data);
             }
             num_comp++;
@@ -341,7 +332,7 @@ void inserirBA(DLList *a, Node *b)
     }
 }
 
-DLList *removeBA(DLList *a, Node *b)
+DLList *removeBAAVL(DLList *a, Node *b)
 {
     DLNode *aux;
     DLList *blz = dllCreate(NULL);
@@ -350,7 +341,7 @@ DLList *removeBA(DLList *a, Node *b)
         aux = a->first;
         while(aux != NULL){
             num_comp++;
-            if(compara((int)aux->data,b) == NULL){
+            if(comparaAVL((int)aux->data,b) == FALSE){
                 dllInsertFirst(blz, aux->data);
             }
             num_comp++;
@@ -360,3 +351,4 @@ DLList *removeBA(DLList *a, Node *b)
     }
     return blz;
 }
+

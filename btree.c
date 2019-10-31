@@ -2,16 +2,6 @@
 #include "btree.h"
 #define _BTREE_C_
 
-struct t_elemento{
-	int num;
-};
-
-struct s_no{
-	t_no *esq;
-	t_elemento dado;
-	t_no *dir;
-};
-
 t_no *criaNoBT(char a[])
 {
 	t_no *novo = NULL;

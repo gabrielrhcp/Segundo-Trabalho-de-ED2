@@ -23,11 +23,11 @@ struct tipoArvore{
 void criarArvoreRB(tipoArvore *arvore,char a[]){
     arvore->topo = NULL;
     FILE *arquivo;
-    int valor;
+    int dado;
     arquivo = fopen(a, "r");
 
-    while((fscanf(arquivo,"%d",&valor) != EOF)){
-        inserirArvoreCriacao(valor, arvore);
+    while((fscanf(arquivo,"%d",&dado) != EOF)){
+        inserirArvoreCriacao(dado, arvore);
     }
     fclose(arquivo);
 }

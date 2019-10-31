@@ -4,10 +4,19 @@
 #ifndef _BTRRE_H_
 #define _BTREE_H_
 
-typedef struct s_no t_no;
+typedef struct t_elemento{
+	int num;
+}t_elemento;
+
+typedef struct s_no{
+	struct s_no *esq;
+	t_elemento dado;
+	struct s_no *dir;
+}t_no;
+
 typedef t_no* t_arvore;
-typedef struct t_elemento t_elemento;
 typedef unsigned char bool;
+
 t_no *criaNoBT(char a[]);
 bool  isVazia(t_no *no);
 int comparaBT(t_elemento item1, t_elemento item2);

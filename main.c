@@ -29,11 +29,11 @@ int main(){
     int ma; // metodo de armazenamento
     int oqf; // escolha feita pelo usuario, oq fazer
     time_t t_ini = 0 , t_fim = 0;
-    list = dllCreate("dados/dadosA.txt");
     char dadosB[] = "dados/dadosB.txt";
     int menu_control;
 
     do{
+        list = dllCreate("dados/dadosA.txt");
         num_comp = 0;
         num_atb = 0;
         system("cls");
@@ -193,7 +193,7 @@ int main(){
                         // 2 3 24 8 36
                         printf("\n");
                         t_ini = time(NULL);
-                        inserirBA(list, avl);
+                        inserirBAAVL(list, avl);
                         t_fim = time(NULL);
                         printf("\nDados B com os elementos de A inseridos:\n");
                         preOrder(avl);
@@ -203,7 +203,7 @@ int main(){
                         // 8 2 3 24 36
                         printf("\n");
                         t_ini = time(NULL);
-                        list = removeBA(list, avl);
+                        list = removeBAAVL(list, avl);
                         t_fim = time(NULL);
                         printf("\nRemovidos os elementos de A q tbm estao em B:\n");
                         printLista(list);
