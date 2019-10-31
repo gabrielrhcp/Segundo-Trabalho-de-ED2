@@ -18,7 +18,7 @@ int main(){
     HashOpen *hash;
 
     // ARVORE BINARIA
-    t_arvore bt;
+    node *bt;
 
     // ARVORE AVL
     Node *avl;
@@ -134,17 +134,17 @@ int main(){
 
             // ARVORE BINARIA
             case 3:
-                bt = criaNoBT(dadosB);
+                bt = criarAB(dadosB);
                 printf("\nDados A: \n");
                 printLista(list);
                 printf("\n\nDados B: \n");
-                exibirPreOrdem(bt);
+                preAB(bt);
 
                 switch(oqf){
                     case 1:
                         printf("\n\nIguais:\n");
                         t_ini = time(NULL);
-                        iguaisBT(list, bt);
+                        iguaisAB(list, bt);
                         t_fim = time(NULL);
                         printf("\n");
                         // 1 10 12 15 35 4 6 100 25 48 29 7
@@ -152,10 +152,10 @@ int main(){
                     case 2:
                         printf("\n");
                         t_ini = time(NULL);
-                        inserirBABT(list, bt);
+                        inserirBAAB(list, bt);
                         t_fim = time(NULL);
                         printf("\nDados B com os elementos de A inseridos:\n");
-                        exibirPreOrdem(bt);
+                        preAB(bt);
                         printf("\n");
                         break;
                         // 2 3 24 8 36
@@ -163,7 +163,7 @@ int main(){
                     default:
                         printf("\n");
                         t_ini = time(NULL);
-                        list = removerABBT(list, bt);
+                        list = removerABAB(list, bt);
                         t_fim = time(NULL);
                         printf("\nRemovidos os elementos de A q tbm estao em B:\n");
                         printLista(list);
