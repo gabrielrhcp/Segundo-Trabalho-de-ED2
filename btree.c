@@ -9,7 +9,7 @@ node *criarAB(char a[]){
     arquivo = fopen(a, "r");
 
     while((fscanf(arquivo,"%d",&dado) != EOF)){
-        insertAB(&root, newAB(dado));
+        insertABCriacao(&root, newAB(dado));
     }
     fclose(arquivo);
     return root;
@@ -30,31 +30,64 @@ node * newAB(int value)
 	return n;
 }
 
-// recursive insertion from the tree root
+void insertABCriacao(node ** root, node * child)
+{
+	if(!*root)
+    {
+        *root = child;
+	}
+	else if(child->value <= (*root)->value)
+	{
+        insertABCriacao(&(*root)->l, child);
+	}
+    else
+    {
+        insertABCriacao(&(*root)->r, child);
+    }
+}
+
 void insertAB(node ** root, node * child)
 {
-	if(!*root) *root = child;  // tree root not exists
-
-    else if(child->value <= (*root)->value)
-        insertAB(&(*root)->l, child); 	  // child value is minor/equal to current node call insertion on left node
-
+	if(!*root)
+    {
+        *root = child;  num_atb++; num_comp++;
+	}
+	else if(child->value <= (*root)->value)
+	{
+	    num_comp++;
+        insertAB(&(*root)->l, child);
+	}
     else
-        insertAB(&(*root)->r, child); 	  // call insertion on right node
-
+    {
+        num_comp++;
+        insertAB(&(*root)->r, child);
+    }
 }
 
 // recursive search of a node
 node * searchAB(node * root, int value)
 {
 	if(root == NULL)
-        return NULL;  		         // node not found
+    {
+        num_comp++;
+        return NULL;
+    }
     else if (root->value == value)
-        return root; 		         // first node address found
-
+    {
+        num_comp++;
+        return root;
+    }
     else if(value > root->value)
-        searchAB(root->r,value);	     // resursive search on right side of tree
+    {
+        num_comp++;
+        searchAB(root->r,value);
+    }
     else
+    {
+        num_comp++;
         searchAB(root->l,value);
+    }
+
 }
 
 void iguaisAB(DLList *a, node *b){
@@ -62,6 +95,7 @@ void iguaisAB(DLList *a, node *b){
     num_comp+=2;
     if(a != NULL && b != NULL){
         aux = a->first;
+        num_atb++;
         while(aux != NULL){
             num_comp++;
             if(searchAB(b,(int)aux->data) != NULL){
@@ -69,6 +103,7 @@ void iguaisAB(DLList *a, node *b){
             }
             num_comp++;
             aux = aux->next;
+            num_atb++;
         }
         num_comp++;
     }
@@ -79,6 +114,7 @@ void inserirBAAB(DLList *a, node *b){
     num_comp+=2;
     if(a != NULL && b != NULL){
         aux = a->first;
+        num_atb++;
         while(aux != NULL){
             num_comp++;
             if(searchAB(b,(int)aux->data) == NULL){
@@ -86,6 +122,7 @@ void inserirBAAB(DLList *a, node *b){
             }
             num_comp++;
             aux = aux->next;
+            num_atb++;
         }
         num_comp++;
     }
@@ -97,6 +134,7 @@ DLList *removerABAB(DLList *a, node *b){
     num_comp+=2;
     if(a != NULL && b != NULL){
         aux = a->first;
+        num_atb++;
         while(aux != NULL){
             num_comp++;
             if(searchAB(b,(int)aux->data) == NULL){
@@ -104,6 +142,7 @@ DLList *removerABAB(DLList *a, node *b){
             }
             num_comp++;
             aux = aux->next;
+            num_atb++;
         }
         num_comp++;
     }

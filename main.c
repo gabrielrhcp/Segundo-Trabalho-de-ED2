@@ -252,8 +252,9 @@ int main(){
                 }
                 break;
         }
+        printf("\nTempo de execucao: %f\n",difftime(t_fim, t_ini));
         printf("\nNumero de comparacoes: %d\n",num_comp);
-        printf("Tempo: %f\n",difftime(t_fim, t_ini));
+        printf("Numero de atribuicoes: %d\n",num_atb);
 
         printf("\nDeseja continuar?\n[1] Sim\n[2] Nao\nDigite: ");
         scanf("%d",&menu_control);

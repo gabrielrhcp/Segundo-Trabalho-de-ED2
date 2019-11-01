@@ -253,6 +253,7 @@ tipoNo* noTio(tipoNo *n){
 
 
 tipoNo* rotacaoEsquerda(tipoNo* raiz, tipoNo* n){
+    num_atb++;
     tipoNo* r = n->noDireito;
     num_comp++;
     if(n == NULL){
@@ -260,31 +261,36 @@ tipoNo* rotacaoEsquerda(tipoNo* raiz, tipoNo* n){
     }
     num_comp++;
     if(raiz == n){
+        num_atb++;
         raiz = r;
     }
 
     else if(++num_comp && n == n->noPai->noEsquerdo){
+        num_atb++;
         n->noPai->noEsquerdo = r;
     }
 
     else{
+        num_atb++;
         n->noPai->noDireito = r;
     }
-
+    num_atb++;
     n->noDireito = r->noEsquerdo;
     num_comp++;
     if(r->noEsquerdo != NULL){
+        num_atb++;
         r->noEsquerdo->noPai = n;
     }
 
     r->noEsquerdo = n;
     r->noPai = n->noPai;
     n->noPai = r;
-
+    num_atb+=3;
     return raiz;
 }
 
 tipoNo* rotacaoDireita(tipoNo* raiz, tipoNo* n){
+    num_atb++;
     tipoNo* l = n->noEsquerdo;
     num_comp++;
     if(n == NULL){
@@ -292,27 +298,31 @@ tipoNo* rotacaoDireita(tipoNo* raiz, tipoNo* n){
     }
     num_comp++;
     if(raiz == n){
+        num_atb++;
         raiz = l;
     }
 
     else if(++num_comp && n == n->noPai->noEsquerdo){
+        num_atb++;
         n->noPai->noEsquerdo = l;
     }
 
     else{
+        num_atb++;
         n->noPai->noDireito = l;
     }
-
+    num_atb++;
     n->noEsquerdo = l->noDireito;
 
     if(l->noDireito != NULL){
+        num_atb++;
         l->noDireito->noPai = n;
     }
 
     l->noDireito = n;
     l->noPai = n->noPai;
     n->noPai = l;
-
+    num_atb+=3;
     return raiz;
 }
 
@@ -403,11 +413,24 @@ tipoNo* noNovo(int dado){
     aux->noEsquerdo = NULL;
     aux->noDireito = NULL;
     aux->noPai = NULL;
+    num_atb+=6;
+    return aux;
+}
+
+tipoNo* noNovoCriacao(int dado){
+    tipoNo* aux;
+
+    aux = (tipoNo *) malloc (sizeof(tipoNo));
+    aux->dado = dado;
+    aux->cor = RUB;
+    aux->noEsquerdo = NULL;
+    aux->noDireito = NULL;
+    aux->noPai = NULL;
     return aux;
 }
 
 tipoNo* inserirElementoCriacao(int numero, tipoNo *raiz){
-    tipoNo* novo = noNovo(numero);
+    tipoNo* novo = noNovoCriacao(numero);
     if(raiz == NULL){
         novo->cor = NEG;
         return novo;
@@ -446,13 +469,15 @@ tipoNo* inserirElementoCriacao(int numero, tipoNo *raiz){
 }
 
 tipoNo* inserirElemento(int numero, tipoNo *raiz){
+    num_atb++;
     tipoNo* novo = noNovo(numero);
     num_comp++;
     if(raiz == NULL){
+        num_atb+=2;
         novo->cor = NEG;
         return novo;
     }
-
+    num_atb++;
     tipoNo* aux = raiz;
 
     while(1){
@@ -463,12 +488,14 @@ tipoNo* inserirElemento(int numero, tipoNo *raiz){
         }else if(++num_comp && novo->dado < aux->dado){
             num_comp++;
             if(aux->noEsquerdo == NULL){
+                num_atb+=2;
                 aux->noEsquerdo = novo;
                 novo->noPai = aux;
                 return balanceamentoCaso1(raiz, novo);
             }
 
             else{
+                num_atb++;
                 aux = aux->noEsquerdo;
             }
         }
@@ -476,12 +503,14 @@ tipoNo* inserirElemento(int numero, tipoNo *raiz){
         else {
             num_comp++;
             if (aux->noDireito == NULL){
+                num_atb+=2;
                 aux->noDireito = novo;
                 novo->noPai = aux;
                 return balanceamentoCaso1(raiz, novo);
             }
 
             else{
+                num_atb++;
                 aux = aux->noDireito;
             }
         }
@@ -490,6 +519,7 @@ tipoNo* inserirElemento(int numero, tipoNo *raiz){
 }
 
 void inserirArvore(int numero, tipoArvore* arvore){
+    num_atb++;
     arvore->topo = inserirElemento(numero, arvore->topo);
 }
 
@@ -538,6 +568,7 @@ void igualRB(DLList *a, tipoNo *b)
     num_comp+=2;
     if(a != NULL && b != NULL){
         aux = a->first;
+        num_atb++;
         while(aux != NULL){
             num_comp++;
             if(buscarElemento((int)aux->data,b) != NULL){
@@ -545,6 +576,7 @@ void igualRB(DLList *a, tipoNo *b)
             }
             num_comp++;
             aux = aux->next;
+            num_atb++;
         }
         num_comp++;
     }
@@ -556,6 +588,7 @@ void inserirBARB(DLList *a, tipoNo *b)
     num_comp+=2;
     if(a != NULL && b != NULL){
         aux = a->first;
+        num_atb++;
         while(aux != NULL){
             num_comp++;
             if(buscarElemento((int)aux->data,b) == NULL){
@@ -563,6 +596,7 @@ void inserirBARB(DLList *a, tipoNo *b)
             }
             num_comp++;
             aux = aux->next;
+            num_atb++;
         }
         num_comp++;
     }
@@ -575,6 +609,7 @@ DLList *removerBARB(DLList *a, tipoNo *b)
     num_comp+=2;
     if(a != NULL && b != NULL){
         aux = a->first;
+        num_atb++;
         while(aux != NULL){
             num_comp++;
             if(buscarElemento(aux->data,b) == NULL){
@@ -582,6 +617,7 @@ DLList *removerBARB(DLList *a, tipoNo *b)
             }
             num_comp++;
             aux = aux->next;
+            num_atb++;
         }
         num_comp++;
     }

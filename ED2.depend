@@ -17,7 +17,7 @@
 1572540864 c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\avltree.h
 	"lista.h"
 
-1572631758 source:c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\main.c
+1572632960 source:c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\main.c
 	"geral.h"
 	"avltree.h"
 	"rbtree.h"
@@ -29,7 +29,7 @@
 	"geral.h"
 	"rbtree.h"
 
-1572540864 c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\rbtree.h
+1572633297 c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\rbtree.h
 	"lista.h"
 
 1572457295 source:c:\users\cliente\desktop\segundo-trabalho-de-ed2-4c3c34b106d7a7aefc4bd79716f733f09d67e6e7\avltree.c
@@ -90,21 +90,21 @@
 
 1572540864 c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\lista.h
 
-1572631683 source:c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\hash.c
+1572632016 source:c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\hash.c
 	"hash.h"
 	"geral.h"
 
 1572631683 c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\hash.h
 	"lista.h"
 
-1572540864 source:c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\lista.c
+1572632747 source:c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\lista.c
 	"geral.h"
 	"lista.h"
 
-1572540864 c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\btree.h
+1572632816 c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\btree.h
 	"lista.h"
 
-1572540864 source:c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\btree.c
+1572632816 source:c:\users\gabie\onedrive\햞ea de trabalho\segundo-trabalho-de-ed2-master\btree.c
 	"geral.h"
 	"btree.h"
 

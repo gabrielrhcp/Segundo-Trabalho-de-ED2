@@ -30,6 +30,7 @@ tipoNo* balanceamentoCaso2Criacao(tipoNo* raiz, tipoNo* n);
 tipoNo* balanceamentoCaso3Criacao(tipoNo* raiz, tipoNo* n);
 tipoNo* balanceamentoCaso4Criacao(tipoNo* raiz, tipoNo* n);
 tipoNo* balanceamentoCaso5Criacao(tipoNo* raiz, tipoNo* n);
+tipoNo* noNovoCriacao(int dado);
 tipoNo* noNovo(int dado);
 tipoNo* inserirElemento(int numero, tipoNo *raiz);
 tipoNo* inserirElementoCriacao(int numero, tipoNo *raiz);

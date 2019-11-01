@@ -10,6 +10,7 @@ typedef struct node{
 node *criarAB(char a[]);
 node * newAB(int value);
 node * searchAB(node * root, int value);
+void insertABCriacao(node ** root, node * child);
 void insertAB(node ** root, node * child);
 void preAB(node * n);
 void iguaisAB(DLList *a, node *b);

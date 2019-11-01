@@ -3,7 +3,7 @@
 #define _HASH_C_
 
 int hash_key(int aux){
-  return aux % 13;
+  return aux % 7;
 }
 
 Hash *Data_Create(int n, char a[]){
