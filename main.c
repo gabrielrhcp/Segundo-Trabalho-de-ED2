@@ -15,7 +15,7 @@ int main(){
     DLList *list2;
 
     // HASH
-    HashOpen *hash;
+    Hash *hash;
 
     // ARVORE BINARIA
     node *bt;
@@ -43,7 +43,7 @@ int main(){
 
         printf("O que voce quer fazer?\n");
         printf("[1] Buscar os elementos de A que estao em B\n");
-        printf("[2] Inserir em B, os elementos de A que estão em B\n");
+        printf("[2] Inserir em B, os elementos de A que estao em B\n");
         printf("[3] Remover os elementos de A que estão em B\nDigite: ");
         scanf("%d",&oqf);
 
@@ -93,17 +93,17 @@ int main(){
 
             // HASH
             case 2:
-                hash = hlCreate(100, dadosB);
+                hash = Data_Create(100, dadosB);
                 printf("\nDados A: \n");
                 printLista(list);
                 printf("\n\nDados B(key|chave):\n");
-                hlPrint(hash);
+                Show_Hash_list(hash,100);
 
                 switch(oqf){
                     case 1:
                         printf("\n\nIguais:\n");
                         t_ini = time(NULL);
-                        hlIguais(list, hash);
+                        hlIguais(list, hash,100);
                         t_fim = time(NULL);
                         printf("\n");
                         // 1 10 12 15 35 4 6 100 25 48 29 7
@@ -111,10 +111,10 @@ int main(){
                     case 2:
                         printf("\n");
                         t_ini = time(NULL);
-
+                        hlinserirListaBA(list, hash,100);
                         t_fim = time(NULL);
                         printf("\nDados B com os elementos de A inseridos:\n");
-
+                        Show_Hash_list(hash,100);
                         printf("\n");
                         break;
                         // 2 3 24 8 36
@@ -122,12 +122,12 @@ int main(){
                     default:
                         printf("\n");
                         t_ini = time(NULL);
-
+                        hlremoverListaAB(list, hash,100);
                         t_fim = time(NULL);
                         printf("\nRemovidos os elementos de A q tbm estao em B:\n");
-
+                        printLista(list);
                         printf("\n");
-                        //
+                        // 8 2 3 24 36
                         break;
                 }
                 break;
